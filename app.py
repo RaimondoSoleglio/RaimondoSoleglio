@@ -32,10 +32,23 @@ def index():
 @app.route("/query", methods=["GET"])
 def query():
     query = request.args.get('q')
-    # If query is not empty, fetch matching movie titles
-    if query:
-        results = db.execute("SELECT title FROM movies WHERE title LIKE ? LIMIT 10", f"%{query}%")
-    else:
-        results = []
-    # Return results in JSON format
-    return jsonify(results)
+    if not query:
+        return jsonify([])
+
+    # Call TMDb Search Movies API
+    response = requests.get(
+        f"https://api.themoviedb.org/3/search/movie",
+        params={
+            "api_key": TMDB_API_KEY,
+            "query": query,
+            "include_adult": "false"
+        }
+    )
+
+    # Parse the JSON response from TMDb
+    data = response.json()
+
+    # Get up to 10 movie titles from the results
+    movies = [{"title": movie["title"]} for movie in data.get("results", [])[:10]]
+
+    return jsonify(movies)
