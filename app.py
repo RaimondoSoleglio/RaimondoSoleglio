@@ -51,8 +51,10 @@ def after_request(response):
 # index
 @app.route("/")
 def index():
-
-    return render_template("index.html")
+    # Get a random actor if none has been set
+    current_actor = session.get("current_actor") or get_random_actor()
+    session["current_actor"] = current_actor
+    return render_template("index.html", actor=current_actor)
 
 # query route
 @app.route("/query", methods=["GET"])
