@@ -1,0 +1,75 @@
+/* Size for brand */
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
+
+/* Colors for brand */
+nav .navbar-brand .blue
+{
+    color: #537fbe;
+}
+nav .navbar-brand .red
+{
+    color: #ea433b;
+}
+nav .navbar-brand .yellow
+{
+    color: #f5b82e;
+}
+nav .navbar-brand .green
+{
+    color: #2e944b;
+}
+
+
+/* Tables */
+.tables {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    border: 1px solid #666;
+}
+
+/* Colours of History */
+#history .tables th {
+    background-color: #00ffd8;
+}
+
+/* Table headers */
+.tables th {
+    background-color: #ffd800;
+    color: #333;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Table cells */
+.tables td {
+    padding: 10px;
+    border-bottom: 1px solid #666;
+    text-align: center;
+}
+
+
+#results {
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    position: absolute;
+    width: 100%;
+    background-color: white;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#results li {
+    padding: 8px;
+    cursor: pointer;
+}
+
+#results li:hover {
+    background-color: #eee;
+}
