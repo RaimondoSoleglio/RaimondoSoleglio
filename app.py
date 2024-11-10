@@ -23,6 +23,22 @@ def setup_db():
     db.execute("CREATE TABLE IF NOT EXISTS actors (id INTEGER PRIMARY KEY, name TEXT)")
     db.execute("CREATE TABLE IF NOT EXISTS movies (id INTEGER PRIMARY KEY, title TEXT)")
 
+# To pick a random actor at start
+def get_random_actor():
+    response = requests.get(
+        "https://api.themoviedb.org/3/person/popular",
+        params={"api_key": TMDB_API_KEY}
+    )
+    actors = response.json().get("results", [])
+
+    # Randomly pick an actor
+    selected_actor = random.choice(actors)
+
+    # Add actor to the temporary database
+    db.execute("INSERT INTO actors (name) VALUES (?)", selected_actor["name"])
+
+    return selected_actor["name"]
+
 # Copied form CS50 pset - does this work?
 @app.after_request
 def after_request(response):
