@@ -22,6 +22,9 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
+# My TMDb API key
+TMDB_API_KEY = "b0ae1057e51208e1713059117208de90"
+
 # index
 @app.route("/")
 def index():
