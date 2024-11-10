@@ -118,3 +118,6 @@ def guess():
 
     return redirect("/wrong")
 
+@app.route("/wrong")
+def wrong():
+    return "Wrong answer, try again!", 400
