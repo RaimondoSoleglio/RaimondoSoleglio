@@ -79,4 +79,6 @@ def query():
     # Get up to 10 movie titles from the results
     movies = [{"title": movie["title"]} for movie in data.get("results", [])[:10]]
 
-    return jsonify(movies)
+    # Update results to filter out movies already guessed
+    unique_movies = [movie for movie in movies if movie["title"] not in db.execute("SELECT title FROM movies")]
+    return jsonify(unique_movies)
