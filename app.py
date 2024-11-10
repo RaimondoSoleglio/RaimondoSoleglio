@@ -82,3 +82,39 @@ def query():
     # Update results to filter out movies already guessed
     unique_movies = [movie for movie in movies if movie["title"] not in db.execute("SELECT title FROM movies")]
     return jsonify(unique_movies)
+
+@app.route("/guess", methods=["POST"])
+def guess():
+    selected_movie = request.form.get("movie_query")
+    current_actor = session.get("current_actor")
+
+    # Validate the guess by checking if the actor is in the movie’s cast
+    response = requests.get(
+        f"https://api.themoviedb.org/3/search/movie",
+        params={"api_key": TMDB_API_KEY, "query": selected_movie}
+    )
+    data = response.json()
+    movie_info = data.get("results", [])[0] if data.get("results") else None
+
+    if not movie_info:
+        return redirect("/wrong")
+
+    # Check if the actor appears in the movie's cast
+    movie_id = movie_info["id"]
+    cast_response = requests.get(
+        f"https://api.themoviedb.org/3/movie/{movie_id}/credits",
+        params={"api_key": TMDB_API_KEY}
+    )
+    cast_data = cast_response.json().get("cast", [])
+
+    if any(actor["name"] == current_actor for actor in cast_data[:10]):
+        # Add movie to the session database
+        db.execute("INSERT INTO movies (title) VALUES (?)", selected_movie)
+
+        # Pick another main actor from the movie’s cast
+        new_actor = random.choice([actor["name"] for actor in cast_data[:5] if actor["name"] != current_actor])
+        session["current_actor"] = new_actor
+        return redirect("/")
+
+    return redirect("/wrong")
+
