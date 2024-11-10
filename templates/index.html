@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block main %}
+    <h2>Guess a movie starring {{ actor }}</h2>
     <form action="/query" method="post">
         <input autocomplete="on" autofocus class="form-control mx-auto w-auto" id="search" oninput="fetchResults()" name="movie_query" placeholder="Guess the movie" type="text">
         <ul id="results"></ul>
