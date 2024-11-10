@@ -33,7 +33,7 @@ def get_random_actor():
         famous_actors = actors
 
     # Randomly pick an actor
-    selected_actor = random.choice(actors)
+    selected_actor = random.choice(famous_actors)
 
     # Add actor to the temporary database
     db.execute("INSERT INTO actors (name) VALUES (?)", selected_actor["name"])
