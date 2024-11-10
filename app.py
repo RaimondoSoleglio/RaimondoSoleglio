@@ -17,12 +17,6 @@ TMDB_API_KEY = "b0ae1057e51208e1713059117208de90"
 # Temporary in-memory database
 db = SQL("sqlite:///temp_game.db")
 
-@app.before_first_request
-def setup_db():
-    # Create tables for tracking actors and movies
-    db.execute("CREATE TABLE IF NOT EXISTS actors (id INTEGER PRIMARY KEY, name TEXT)")
-    db.execute("CREATE TABLE IF NOT EXISTS movies (id INTEGER PRIMARY KEY, title TEXT)")
-
 # To pick a random actor at start
 def get_random_actor():
     response = requests.get(
