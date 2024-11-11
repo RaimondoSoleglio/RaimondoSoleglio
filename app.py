@@ -17,6 +17,20 @@ TMDB_API_KEY = "b0ae1057e51208e1713059117208de90"
 # Temporary in-memory database
 db = SQL("sqlite:///temp_game.db")
 
+# Copied form CS50 pset - does this work?
+@app.after_request
+def after_request(response):
+    """Ensure responses aren't cached"""
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Expires"] = 0
+    response.headers["Pragma"] = "no-cache"
+    return response
+
+@app.route("/new_round")
+def new_round():
+    session.pop("current_actor", None)  # Clear the current actor
+    return redirect("/")  # Redirect to main game page
+
 # To pick a random actor at start
 def get_random_actor():
     response = requests.get(
@@ -40,15 +54,6 @@ def get_random_actor():
 
     return selected_actor["name"]
 
-# Copied form CS50 pset - does this work?
-@app.after_request
-def after_request(response):
-    """Ensure responses aren't cached"""
-    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
-    response.headers["Expires"] = 0
-    response.headers["Pragma"] = "no-cache"
-    return response
-
 # index
 @app.route("/")
 def index():
@@ -56,11 +61,6 @@ def index():
     current_actor = session.get("current_actor") or get_random_actor()
     session["current_actor"] = current_actor
     return render_template("index.html", actor=current_actor)
-
-@app.route("/new_round")
-def new_round():
-    session.pop("current_actor", None)  # Clear the current actor
-    return redirect("/")  # Redirect to main game page
 
 # query route
 @app.route("/query", methods=["GET"])
