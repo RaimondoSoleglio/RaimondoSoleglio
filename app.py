@@ -46,6 +46,21 @@ def get_random_actor():
     if not famous_actors:
         famous_actors = actors
 
+    # Query the temporary database to get a list of actors already used
+    used_actors = db.execute("SELECT name FROM actors")
+    used_actor_names = {row["name"] for row in used_actors}  # Convert to a set for fast lookup
+
+    # Filter out actors already in the database
+    available_actors = [actor for actor in famous_actors if actor["name"] not in used_actor_names]
+
+    # If no available actors meet the criteria, use the full list as a backup
+    if not available_actors:
+        available_actors = [actor for actor in actors if actor["name"] not in used_actor_names]
+
+    # Randomly pick an actor from the filtered list
+    if available_actors:
+        selected_actor = random.choice(available_actors)
+
     # Randomly pick an actor
     selected_actor = random.choice(famous_actors)
 
