@@ -114,7 +114,7 @@ def guess():
     )
     cast_data = cast_response.json().get("cast", [])
 
-    if any(actor["name"] == current_actor for actor in cast_data[:10]):
+    if any(actor["name"] == current_actor for actor in cast_data):
         # Add movie to the session database
         db.execute("INSERT INTO movies (title) VALUES (?)", selected_movie)
 
