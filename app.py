@@ -63,31 +63,34 @@ def new_round():
     return redirect("/")  # Redirect to main game page
 
 # query route
-@app.route("/query", methods=["GET"])
+@app.route("/query", methods=["GET", "POST"])
 def query():
-    query = request.args.get('q')
-    if not query:
-        return jsonify([])
+    if request.method == "POST":
+        query = request.args.get('q')
+        if not query:
+            return jsonify([])
 
-    # Call TMDb Search Movies API
-    response = requests.get(
-        f"https://api.themoviedb.org/3/search/movie",
-        params={
-            "api_key": TMDB_API_KEY,
-            "query": query,
-            "include_adult": "false"
-        }
-    )
+        # Call TMDb Search Movies API
+        response = requests.get(
+            f"https://api.themoviedb.org/3/search/movie",
+            params={
+                "api_key": TMDB_API_KEY,
+                "query": query,
+                "include_adult": "false"
+            }
+        )
 
-    # Parse the JSON response from TMDb
-    data = response.json()
+        # Parse the JSON response from TMDb
+        data = response.json()
 
-    # Get up to 10 movie titles from the results
-    movies = [{"title": movie["title"]} for movie in data.get("results", [])[:10]]
+        # Get up to 10 movie titles from the results
+        movies = [{"title": movie["title"]} for movie in data.get("results", [])[:10]]
 
-    # Update results to filter out movies already guessed
-    unique_movies = [movie for movie in movies if movie["title"] not in db.execute("SELECT title FROM movies")]
-    return jsonify(unique_movies)
+        # Update results to filter out movies already guessed
+        unique_movies = [movie for movie in movies if movie["title"] not in db.execute("SELECT title FROM movies")]
+        return jsonify(unique_movies)
+    else:
+        return redirect("/")  # Redirect to main game page
 
 @app.route("/guess", methods=["POST"])
 def guess():
