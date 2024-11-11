@@ -89,6 +89,13 @@ def query():
     unique_movies = [movie for movie in movies if movie["title"] not in db.execute("SELECT title FROM movies")]
     return jsonify(unique_movies)
 
+@app.route("/submit", methods=["POST"])
+def submit():
+    movie_query = request.form.get("movie_query")
+    # Process the selected movie title, check if it’s correct, etc.
+    # For now, just display a simple success message
+    return f"You selected: {movie_query}"
+
 @app.route("/guess", methods=["POST"])
 def guess():
     selected_movie = request.form.get("movie_query")
