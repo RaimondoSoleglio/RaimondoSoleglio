@@ -57,6 +57,11 @@ def index():
     session["current_actor"] = current_actor
     return render_template("index.html", actor=current_actor)
 
+@app.route("/new_round")
+def new_round():
+    session.pop("current_actor", None)  # Clear the current actor
+    return redirect("/")  # Redirect to main game page
+
 # query route
 @app.route("/query", methods=["GET"])
 def query():
