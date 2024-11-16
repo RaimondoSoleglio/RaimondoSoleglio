@@ -109,8 +109,12 @@ def guess():
     movie_id = request.form.get("movie_id")  # Movie ID (e.g., 123)
     current_actor = session.get("current_actor")
 
+     # Validate the input
+    if not movie_id:
+        return redirect("/wrong")  # Ensure `movie_id` is provided
+
     # Validate the guess by checking if the actor is in the movie’s cast
-    response = requests.get(
+    cast_response = requests.get(
         f"https://api.themoviedb.org/3/search/movie",
         params={"api_key": TMDB_API_KEY, "query": selected_movie}
     )
