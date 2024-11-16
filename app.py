@@ -33,6 +33,9 @@ def new_round():
 
 # To pick a random actor at start
 def get_random_actor():
+    # Reset previous session's DB
+    
+
     response = requests.get(
         "https://api.themoviedb.org/3/person/popular",
         params={"api_key": TMDB_API_KEY}
