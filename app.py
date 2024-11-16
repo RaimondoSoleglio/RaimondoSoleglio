@@ -39,7 +39,7 @@ def get_random_actor():
     )
     actors = response.json().get("results", [])
 
-    print (actors)
+    # print (actors)
 
     # Filter actors to ensure they have a minimum number of known movies
     famous_actors = [actor for actor in actors if len(actor.get("known_for", [])) >= 5]
