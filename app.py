@@ -106,6 +106,7 @@ def query():
 @app.route("/guess", methods=["POST"])
 def guess():
     selected_movie = request.form.get("movie_query")
+    movie_id = request.form.get("movie_id")  # Movie ID (e.g., 123)
     current_actor = session.get("current_actor")
 
     # Validate the guess by checking if the actor is in the movie’s cast
