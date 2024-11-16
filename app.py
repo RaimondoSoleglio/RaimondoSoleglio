@@ -15,7 +15,7 @@ Session(app)
 TMDB_API_KEY = "b0ae1057e51208e1713059117208de90"
 
 # Temporary in-memory database
-db = SQL("sqlite:///temp_game.db")
+db = SQL("sqlite:///game_database.db")
 
 # Copied form CS50 pset - does this work?
 @app.after_request
@@ -38,7 +38,7 @@ def new_round():
 # To pick a random actor at start
 def get_random_actor():
 
-    first_actor = 
+    first_actor =
 
     # Randomly pick an actor from the filtered list
     selected_actor = random.choice(first_actor)
