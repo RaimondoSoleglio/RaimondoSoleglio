@@ -125,9 +125,9 @@ def guess():
         return redirect("/wrong")
 
     # Check if the actor appears in the movie's cast
-    movie_id = movie_info["id"]
+    old_movie_id = movie_info["id"]
     cast_response = requests.get(
-        f"https://api.themoviedb.org/3/movie/{movie_id}/credits",
+        f"https://api.themoviedb.org/3/movie/{old_movie_id}/credits",
         params={"api_key": TMDB_API_KEY}
     )
     cast_data = cast_response.json().get("cast", [])
