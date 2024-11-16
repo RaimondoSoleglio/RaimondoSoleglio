@@ -83,7 +83,7 @@ def query():
     movies = [{"title": f"{movie['title']} ({movie['release_date'][:4]})", "id": movie["id"]} for movie in data.get("results", [])[:10]]
 
     # Update results to filter out movies already guessed
-    unique_movies = [movie for movie in movies if movie["title"] not in db.execute("SELECT title FROM movies")]
+    unique_movies = [movie for movie in movies if movie["id"] not in db.execute("SELECT movie_id FROM movies")]
     return jsonify(unique_movies)
 
 
