@@ -38,7 +38,7 @@ def new_round():
 # To pick a random actor at start
 def get_random_actor():
 
-    first_actor = "Tom Cruise"
+    first_actor = 
 
     # Randomly pick an actor from the filtered list
     selected_actor = random.choice(first_actor)
