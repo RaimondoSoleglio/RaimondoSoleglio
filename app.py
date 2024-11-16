@@ -100,6 +100,7 @@ def guess():
     data = response.json()
     movie_info = data.get("results", [])[0] if data.get("results") else None
 
+    print("data info:", data)
     print("movie info:", movie_info)
 
     if not movie_info:
