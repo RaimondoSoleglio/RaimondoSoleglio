@@ -130,9 +130,13 @@ def guess():
         # Find the list of already picked actors in the temp actors table
         used_actors = {actor["name"] for actor in db.execute("SELECT name FROM actors")}
 
+        # Shuffle the list of top 5 main cast members so to randomise the choice
+        top_cast = cast_data[:5]
+        random.shuffle(top_cast)
+
         # Try to pick a new actor from the top 5 main cast members
         new_actor = None
-        for actor in cast_data[:5]:  # Try from main cast (first 5 actors)
+        for actor in top_cast:  # Try from main cast (first 5 actors)
             if actor["name"] not in used_actors:
                 new_actor = actor["name"]
                 break
