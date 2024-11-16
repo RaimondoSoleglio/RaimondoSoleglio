@@ -1,7 +1,7 @@
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session, jsonify
 from flask_session import Session
-import requests, random, json
+import requests, random, json, sqlite3
 
 # Configure application
 app = Flask(__name__)
@@ -29,12 +29,14 @@ def after_request(response):
 @app.route("/new_round")
 def new_round():
     session.pop("current_actor", None)  # Clear the current actor
+
+    # Reset previous session's DB
+    db.execute("DELETE FROM )
+
     return redirect("/")  # Redirect to main game page
 
 # To pick a random actor at start
 def get_random_actor():
-    # Reset previous session's DB
-    
 
     response = requests.get(
         "https://api.themoviedb.org/3/person/popular",
