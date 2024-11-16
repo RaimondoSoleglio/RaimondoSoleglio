@@ -7,38 +7,16 @@
 {% block main %}
     <h2>Guess a movie starring {{ actor }}</h2>
     <form action="/guess" method="post">
-        <input autocomplete="on" autofocus class="form-control mx-auto w-auto" id="search" oninput="fetchResults()" name="movie_query" placeholder="Guess the movie" type="text">
-        <input type="hidden" id="selected_movie_id" name="movie_id">
-        <ul id="results"></ul>
+        <input
+        autocomplete="off"
+        autofocus
+        class="form-control mx-auto w-auto"
+        id="search"
+        name="movie_query"
+        placeholder="Guess the movie"
+        type="text">
+    <input type="hidden" id="selected_movie_id" name="movie_id">
+    <ul id="results" class="suggestions-list"></ul>
     </form>
-    <script>
-        function fetchResults() {
-            let query = document.getElementById('search').value;
-            if (query.length === 0) {
-                document.getElementById('results').innerHTML = ""; // Clear if query is empty
-                return;
-            }
-
-            fetch(`/query?q=${query}`)
-                .then(response => response.json())
-                .then(data => {
-                    let resultsList = document.getElementById('results');
-                    resultsList.innerHTML = "";  // Clear previous results
-
-                    // Populate the list with new results
-                    data.forEach(movie => {
-                        let listItem = document.createElement('li');
-                        listItem.textContent = movie.title;
-                        listItem.dataset.id = movie.id;  // Store the movie ID in a custom attribute
-                        listItem.onclick = function() {
-                            document.getElementById('search').value = movie.title;
-                            document.getElementById('selected_movie_id').value = movie.id;  // Set the hidden input field for the movie ID
-                            resultsList.innerHTML = "";  // Clear list after selection
-                            document.forms[0].submit();
-                        };
-                        resultsList.appendChild(listItem);
-                    });
-                });
-        }
-    </script>
+    
 {% endblock %}
