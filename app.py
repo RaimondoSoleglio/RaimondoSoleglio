@@ -31,7 +31,7 @@ def new_round():
     session.pop("current_actor", None)  # Clear the current actor
 
     # Reset previous session's DB
-    db.execute("DELETE FROM )
+    db.execute("DELETE FROM actors")
 
     return redirect("/")  # Redirect to main game page
 
