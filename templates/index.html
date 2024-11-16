@@ -28,8 +28,10 @@
                     data.forEach(movie => {
                         let listItem = document.createElement('li');
                         listItem.textContent = movie.title;
+                        listItem.dataset.id = movie.id;  // Store the movie ID in a custom attribute
                         listItem.onclick = function() {
                             document.getElementById('search').value = movie.title;
+                            document.getElementById('selected_movie_id').value = movie.id;  // Set the hidden input field for the movie ID
                             resultsList.innerHTML = "";  // Clear list after selection
                             document.forms[0].submit();
                         };
