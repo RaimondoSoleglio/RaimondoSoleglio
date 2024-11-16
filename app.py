@@ -38,10 +38,12 @@ def new_round():
 # To pick a random actor at start
 def get_random_actor():
 
-    first_actor = db.execute()
+    first_actor = db.execute("SELECT name, id FROM starting_actors")
 
     # Randomly pick an actor from the filtered list
     selected_actor = random.choice(first_actor)
+
+    print (selected_actor)
 
     # Add actor to the temporary database
     db.execute("INSERT INTO actors (name, actor_id) VALUES (?, ?)", selected_actor["name"], selected_actor("id"))
