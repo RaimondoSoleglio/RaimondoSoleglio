@@ -80,7 +80,23 @@ def query():
     data = response.json()
 
     # Get up to 10 movie titles from the results
-    movies = [{"title": f"{movie['title']} ({movie['release_date'][:4]})", "id": movie["id"]} for movie in data.get("results", [])[:10]]
+    movies = []
+    for movie in data.get("results", [])[:10]:
+        title = movie['title']
+        original_title = movie['original_title']
+        year = movie['release_date'][:4]  # Extract year from release_date
+
+        # Check if the original_title differs from the title
+        if original_title != title:
+            updated_title = f"{title} ({year}) (or. title: \"{original_title}\")"
+        else:
+            updated_title = f"{title} ({year})"
+
+        # Add the movie info including title and movie ID
+        movies.append({
+            "title": updated_title,
+            "id": movie["id"]
+        })
 
     # Update results to filter out movies already guessed
     unique_movies = [movie for movie in movies if movie["id"] not in db.execute("SELECT movie_id FROM movies")]
