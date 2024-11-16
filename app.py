@@ -44,6 +44,8 @@ def get_random_actor():
     # Filter actors to ensure they have a minimum number of known movies
     famous_actors = [actor for actor in actors if len(actor.get("known_for", [])) >= 5]
 
+    print (famous_actors)
+
     # If no actors meet the criteria, use the full list (backup)
     if not famous_actors:
         famous_actors = actors
