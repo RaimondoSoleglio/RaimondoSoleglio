@@ -98,8 +98,10 @@ def query():
             "id": movie["id"]
         })
 
+    # Extract movie IDs already guessed
+    guessed_movie_ids = {row["movie_id"] for row in db.execute("SELECT movie_id FROM movies")}
     # Update results to filter out movies already guessed
-    unique_movies = [movie for movie in movies if movie["id"] not in db.execute("SELECT movie_id FROM movies")]
+    unique_movies = [movie for movie in movies if movie["id"] not in guessed_movie_ids]
     return jsonify(unique_movies)
 
 
