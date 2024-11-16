@@ -91,3 +91,68 @@ nav .navbar-brand .green
 .suggestion.highlight {
     background-color: #f0f0f0;
 }
+
+/* to review */
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* 2 columns: left (1), right (2) */
+    grid-template-rows: auto; /* The rows are flexible */
+    gap: 2rem; /* Space between columns */
+    padding: 2rem;
+}
+
+.left-section {
+    display: grid;
+    grid-template-rows: 1fr 3fr; /* Top block is 1, bottom block is 3 */
+    gap: 1rem;
+}
+
+.player-info {
+    background-color: #f4f4f4;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.game-info {
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.right-section {
+    background-color: #f0f0f0;
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+h3 {
+    text-align: center;
+}
+
+.timer {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul li {
+    padding: 0.5rem;
+    background-color: #fff;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        grid-template-columns: 1fr; /* Stack columns on smaller screens */
+    }
+}
