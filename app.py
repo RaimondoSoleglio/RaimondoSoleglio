@@ -32,6 +32,7 @@ def new_round():
 
     # Reset previous session's DB
     db.execute("DELETE FROM actors")
+    db.execute("DELETE FROM movies")
 
     return redirect("/")  # Redirect to main game page
 
