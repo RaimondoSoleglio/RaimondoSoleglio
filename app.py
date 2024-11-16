@@ -1,7 +1,7 @@
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session, jsonify
 from flask_session import Session
-import requests, random
+import requests, random, json
 
 # Configure application
 app = Flask(__name__)
@@ -39,7 +39,7 @@ def get_random_actor():
     )
     actors = response.json().get("results", [])
 
-    # print (actors)
+    print(json.dumps(actors, indent=4))
 
     # Filter actors to ensure they have a minimum number of known movies
     famous_actors = [actor for actor in actors if len(actor.get("known_for", [])) >= 5]
