@@ -115,23 +115,7 @@ def guess():
 
     # Validate the guess by checking if the actor is in the movie’s cast
     cast_response = requests.get(
-        f"https://api.themoviedb.org/3/search/movie",
-        params={"api_key": TMDB_API_KEY, "query": selected_movie}
-    )
-    data = response.json()
-    movie_info = data.get("results", [])[0] if data.get("results") else None
-
-    print(selected_movie)
-    print("data info:", data)
-    print("movie info:", movie_info)
-
-    if not movie_info:
-        return redirect("/wrong")
-
-    # Check if the actor appears in the movie's cast
-    old_movie_id = movie_info["id"]
-    cast_response = requests.get(
-        f"https://api.themoviedb.org/3/movie/{old_movie_id}/credits",
+        f"https://api.themoviedb.org/3/movie/{movie_id}/credits",
         params={"api_key": TMDB_API_KEY}
     )
     cast_data = cast_response.json().get("cast", [])
