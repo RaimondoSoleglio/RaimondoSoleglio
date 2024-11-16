@@ -38,37 +38,10 @@ def new_round():
 # To pick a random actor at start
 def get_random_actor():
 
-    response = requests.get(
-        "https://api.themoviedb.org/3/person/popular",
-        params={"api_key": TMDB_API_KEY}
-    )
-    actors = response.json().get("results", [])
-
-    print(json.dumps(actors, indent=4))
-
-    # Filter actors to ensure they have a minimum number of known movies
-    famous_actors = [actor for actor in actors if len(actor.get("known_for", [])) >= 5]
-
-    print (famous_actors)
-
-    # If no actors meet the criteria, use the full list (backup)
-    if not famous_actors:
-        famous_actors = actors
-
-    # Query the temporary database to get a list of actors already used
-    used_actors = db.execute("SELECT name FROM actors")
-    used_actor_names = {row["name"] for row in used_actors}  # Convert to a set for fast lookup
-
-    # Filter out actors already in the database
-    available_actors = [actor for actor in famous_actors if actor["name"] not in used_actor_names]
-
-    # If no available actors meet the criteria, use the full list as a backup
-    if not available_actors:
-        available_actors = [actor for actor in actors if actor["name"] not in used_actor_names]
+    first_actor = 
 
     # Randomly pick an actor from the filtered list
-    if available_actors:
-        selected_actor = random.choice(available_actors)
+    selected_actor = random.choice(first_actor)
 
     # Add actor to the temporary database
     db.execute("INSERT INTO actors (name) VALUES (?)", selected_actor["name"])
