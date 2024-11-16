@@ -46,7 +46,7 @@ def get_random_actor():
     print (selected_actor)
 
     # Add actor to the temporary database
-    db.execute("INSERT INTO actors (name, actor_id) VALUES (?, ?)", selected_actor["name"], selected_actor("id"))
+    db.execute("INSERT INTO actors (name, actor_id) VALUES (?, ?)", selected_actor["name"], selected_actor["id"])
 
     return selected_actor["name"]
 
