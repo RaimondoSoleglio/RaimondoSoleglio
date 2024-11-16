@@ -143,7 +143,7 @@ def guess():
         # Update the session with the new actor
         session["current_actor"] = new_actor
         return redirect("/")
-'''
+    '''
     if any(actor["name"] == current_actor for actor in cast_data):
         # Add movie to the session database
         db.execute("INSERT INTO movies (title) VALUES (?)", selected_movie)
@@ -152,7 +152,7 @@ def guess():
         new_actor = random.choice([actor["name"] for actor in cast_data[:5] if actor["name"] != current_actor])
         session["current_actor"] = new_actor
         return redirect("/")
-'''
+    '''
     return redirect("/wrong")
 
 @app.route("/wrong")
