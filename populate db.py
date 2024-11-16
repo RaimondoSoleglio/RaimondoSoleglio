@@ -101,9 +101,13 @@ first_actor = [
     {"name": "Chris Pine", "id": 6425}
 ]
 
+# Prepare a list of tuples (id, name) for the `executemany` method
+actors_to_insert = [(actor['id'], actor['name']) for actor in first_actor]
+
+
 
 for actor in first_actor:
-    db.execute("INSERT OR IGNORE INTO starting_actors (id, name) VALUES (?, ?)", (actor['id'], actor['name']))
+    db.executemany("INSERT OR IGNORE INTO starting_actors (id, name) VALUES (?, ?)", actors_to_insert)
 
 
 conn.commit()
