@@ -69,12 +69,7 @@ first_actor = [
     (3123, "Olivia Colman"),
     (8292, "Dwayne Johnson"),
     (210, "Ben Stiller"),
-    (278458, "John Boyega"),
-    (2279, "Zac Efron"),
-    (6425, "Chris Pine")
 ]
 
 for actor in first_actor:
     db.execute("INSERT OR IGNORE INTO starting_actors (id, name) VALUES (?, ?)", first_actor)
-
-conn.commit()
