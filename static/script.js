@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else if (e.key === "Enter") {
             e.preventDefault();
             if (currentIndex >= 0 && suggestions[currentIndex]) {
-                suggestions[currentIndex].click();
+                suggestions[currentIndex].click(); // Trigger the click behavior programmatically
             }
         }
     });
@@ -39,16 +39,22 @@ document.addEventListener("DOMContentLoaded", () => {
             .then((response) => response.json())
             .then((data) => {
                 suggestionBox.innerHTML = ""; // Clear previous suggestions
+                currentIndex = -1; // Reset the highlighted index
+
                 data.forEach((movie) => {
                     const listItem = document.createElement("li");
                     listItem.textContent = movie.title;
                     listItem.dataset.id = movie.id; // Store the movie ID
                     listItem.classList.add("suggestion");
+
+                    // Behavior when a suggestion is clicked
                     listItem.onclick = () => {
                         inputField.value = movie.title;
                         hiddenField.value = movie.id; // Set the hidden input value
                         suggestionBox.innerHTML = ""; // Clear suggestions
+                        document.forms[0].submit(); // Submit the form
                     };
+
                     suggestionBox.appendChild(listItem);
                 });
             });
