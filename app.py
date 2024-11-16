@@ -110,6 +110,39 @@ def guess():
     )
     cast_data = cast_response.json().get("cast", [])
 
+    # Check if current_actor is in the movie cast
+    if any(actor["name"] == current_actor for actor in cast_data):
+        # Add movie to the session database
+        db.execute("INSERT INTO movies (title) VALUES (?)", selected_movie)
+
+        # Find the list of already picked actors in the temp actors table
+        used_actors = {actor["name"] for actor in db.execute("SELECT name FROM actors")}
+
+        # Try to pick a new actor from the top 5 main cast members
+        new_actor = None
+        for actor in cast_data[:5]:  # Try from main cast (first 5 actors)
+            if actor["name"] not in used_actors:
+                new_actor = actor["name"]
+                break
+
+        # If all 5 main actors are used, pick from the rest of the cast
+        if not new_actor:
+            for actor in cast_data[5:]:  # From the 6th actor onward
+                if actor["name"] not in used_actors:
+                    new_actor = actor["name"]
+                    break
+
+        # If no new actor is found (very unlikely), return an error or message
+        if not new_actor:
+            return redirect("/wrong")
+
+        # Add the new actor to the temporary actors table in the database
+        db.execute("INSERT INTO actors (name, actor_id) VALUES (?, ?)", new_actor, actor["id"])
+
+        # Update the session with the new actor
+        session["current_actor"] = new_actor
+        return redirect("/")
+'''
     if any(actor["name"] == current_actor for actor in cast_data):
         # Add movie to the session database
         db.execute("INSERT INTO movies (title) VALUES (?)", selected_movie)
@@ -118,7 +151,7 @@ def guess():
         new_actor = random.choice([actor["name"] for actor in cast_data[:5] if actor["name"] != current_actor])
         session["current_actor"] = new_actor
         return redirect("/")
-
+'''
     return redirect("/wrong")
 
 @app.route("/wrong")
