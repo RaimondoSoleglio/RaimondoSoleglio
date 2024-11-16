@@ -114,7 +114,7 @@ def guess():
     # Check if current_actor is in the movie cast
     if any(actor["name"] == current_actor for actor in cast_data):
         # Add movie to the session database
-        db.execute("INSERT INTO movies (title) VALUES (?)", selected_movie)
+        db.execute("INSERT INTO movies (title, movie_id) VALUES (?, ?)", selected_movie, )
 
         # Find the list of already picked actors in the temp actors table
         used_actors = {actor["name"] for actor in db.execute("SELECT name FROM actors")}
