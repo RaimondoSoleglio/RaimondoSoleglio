@@ -88,7 +88,7 @@ def query():
 
         # Check if the original_title differs from the title
         if original_title != title:
-            updated_title = f"{title} ({year}) (or. title: \"{original_title}\")"
+            updated_title = f"{title} ({year}) [{original_title}])"
         else:
             updated_title = f"{title} ({year})"
 
