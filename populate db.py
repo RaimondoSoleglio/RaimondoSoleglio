@@ -72,4 +72,4 @@ first_actor = [
 ]
 
 for actor in first_actor:
-    db.execute("INSERT OR IGNORE INTO starting_actors (id, name) VALUES (?, ?)", first_actor)
+    db.execute("INSERT OR IGNORE INTO starting_actors (id, name) VALUES (?, ?)", actor)
