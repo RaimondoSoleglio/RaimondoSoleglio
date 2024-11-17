@@ -26,15 +26,15 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
-@app.route("/new_round")
-def new_round():
+@app.route("/start")
+def start():
     session.pop("current_actor", None)  # Clear the current actor
 
     # Reset previous session's DB
     db.execute("DELETE FROM actors")
     db.execute("DELETE FROM movies")
 
-    return redirect("/")  # Redirect to main game page
+    return redirect("/main")  # Redirect to main game page
 
 # To pick a random actor at start
 def get_random_actor():
