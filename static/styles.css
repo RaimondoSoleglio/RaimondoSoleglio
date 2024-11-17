@@ -111,6 +111,10 @@ body {
     text-align: center;
 }
 
+#num_players {
+    text-align: center;
+}
+
 /* to review */
 .main-content {
     display: grid;
