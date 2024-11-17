@@ -103,7 +103,7 @@ nav .navbar-brand .green
 
 .left-section {
     display: grid;
-    grid-template-rows: 1fr 3fr; /* Top block is 1, bottom block is 3 */
+    grid-rows: 1 / 3; /* Top block is 1, bottom block is 3 */
     gap: 1rem;
 }
 
@@ -112,7 +112,6 @@ nav .navbar-brand .green
     background-color: #f0f0f0;
     padding: 1rem;
     border-radius: 8px;
-    grid-template-rows: 4fr; /* Top block is 1, bottom block is 3 */
     gap: 1rem;
 }
 
