@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Guess the movie
+{% endblock %}
+
+{% block main %}
+<!-- Main content area -->
+<div class="main-content">
+    <!-- Left content section (2 blocks stacked vertically) -->
+    <div class="left-section">
+        <!-- Player Info block (top left) -->
+        <div class="player-info">
+            <p>Player 1</p>
+            <!-- Or dynamically show player name here -->
+        </div>
+
+
+        <!-- Game Question and Answer Block (bottom left) -->
+        <div class="game-info">
+            <h2>Guess a movie starring {{ actor }}</h2>
+            <form action="/guess" method="post">
+                <input
+                autocomplete="off"
+                autofocus
+                class="form-control mx-auto w-auto"
+                id="search"
+                name="movie_query"
+                placeholder="Guess the movie"
+                type="text">
+            <input type="hidden" id="selected_movie_id" name="movie_id">
+            <ul id="results" class="suggestions-list"></ul>
+            </form>
+        </div>
+    </div>
+
+    <!-- Right content section (sidebar with player stats, lives, timer, etc.) -->
+    <div class="right-section">
+        <h3>Players and Stats</h3>
+        <ul>
+            <li>Player 1: 3 lives</li>
+            <li>Player 2: 2 lives</li>
+            <!-- Dynamically list all players here -->
+        </ul>
+        <div class="timer">
+            <p>Time left: <span id="timer">30s</span></p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
