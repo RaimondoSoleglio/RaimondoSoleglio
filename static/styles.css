@@ -117,7 +117,7 @@ body {
 
 .start-item-1 {
     display: grid;
-    grid-columns: 2 / 3;
+    grid-column: 2 / 3;
 }
 
 #num_players option {
