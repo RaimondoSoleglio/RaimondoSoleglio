@@ -103,7 +103,6 @@ nav .navbar-brand .green
 
 .left-section {
     display: grid;
-    grid-template-columns: 3fr;
     grid-template-rows: 1fr 3fr; /* Top block is 1, bottom block is 3 */
     gap: 1rem;
 }
