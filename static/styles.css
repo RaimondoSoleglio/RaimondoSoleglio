@@ -123,6 +123,8 @@ body {
 
 #num_players option {
     text-align: center;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 /* to review */
