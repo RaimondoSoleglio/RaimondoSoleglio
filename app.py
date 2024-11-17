@@ -28,45 +28,45 @@ def after_request(response):
 
 @app.route("/start", methods=["GET", "POST"])
 def start():
-if request.method == "POST":
-    # Get number of players
-    num_players = int(request.form.get("num_players", 0))
-    if num_players < 1 or num_players > 4:
-        flash("Number of players must be between 1 and 4.")
-        return redirect("/start")
-
-    # Get player names
-    player_names = request.form.getlist("player_name")
-    if len(player_names) != num_players:
-        flash("Please enter names for all players.")
-        return redirect("/start")
-
-    # Validate each player's name
-    for name in player_names:
-        if not name.isalnum() or len(name) > 10:
-            flash("Player names must be alphanumeric and up to 10 characters long.")
+    if request.method == "POST":
+        # Get number of players
+        num_players = int(request.form.get("num_players", 0))
+        if num_players < 1 or num_players > 4:
+            flash("Number of players must be between 1 and 4.")
             return redirect("/start")
 
-    # Get timer value
-    timer = int(request.form.get("timer", 0))
-    if timer not in [15, 30, 45, 60]:
-        flash("Invalid timer value selected.")
-        return redirect("/start")
+        # Get player names
+        player_names = request.form.getlist("player_name")
+        if len(player_names) != num_players:
+            flash("Please enter names for all players.")
+            return redirect("/start")
 
-    # Save game settings in session
-    session["num_players"] = num_players
-    session["player_names"] = player_names
-    session["timer"] = timer
+        # Validate each player's name
+        for name in player_names:
+            if not name.isalnum() or len(name) > 10:
+                flash("Player names must be alphanumeric and up to 10 characters long.")
+                return redirect("/start")
 
-    # Reset session database
-    session.pop("current_actor", None)
-    db.execute("DELETE FROM actors")
-    db.execute("DELETE FROM movies")
+        # Get timer value
+        timer = int(request.form.get("timer", 0))
+        if timer not in [15, 30, 45, 60]:
+            flash("Invalid timer value selected.")
+            return redirect("/start")
 
-    # Redirect to the main game
-    return redirect("/main")
+        # Save game settings in session
+        session["num_players"] = num_players
+        session["player_names"] = player_names
+        session["timer"] = timer
 
-return render_template("start.html")
+        # Reset session database
+        session.pop("current_actor", None)
+        db.execute("DELETE FROM actors")
+        db.execute("DELETE FROM movies")
+
+        # Redirect to the main game
+        return redirect("/main")
+
+    return render_template("start.html")
 
 
 # To pick a random actor at start
