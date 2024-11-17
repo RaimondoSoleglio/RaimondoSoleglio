@@ -112,8 +112,6 @@ body {
     background-color: #f9f9f9;
     text-align: center;
     padding: 20px 0;
-    font-size: 20px;
-    font-weight: bold;
   }
 
 .start-item-1 {
@@ -121,10 +119,17 @@ body {
     grid-column: 2 / 3;
 }
 
-option, select {
+#num_players {
     text-align: center;
-    font-size: 120px;
-    font-weight: bold;
+    font-size: 16px; /* Adjust the font size */
+    padding: 8px; /* Add padding for better spacing */
+    border: 1px solid #ccc; /* Optional: border for aesthetics */
+    border-radius: 4px; /* Optional: rounded corners */
+}
+
+#num_players option {
+    font-size: 16px; /* Adjust the font size of options */
+    padding: 5px; /* Optional: improve spacing in options */
 }
 
 /* to review */
