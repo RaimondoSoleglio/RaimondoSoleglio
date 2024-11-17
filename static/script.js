@@ -85,6 +85,9 @@ const submitButton = document.getElementById('submit-button');
 let playerNames = [];
 let maxPlayers = 0;
 
+// Regex for valid player names (alphanumeric, max 10 characters)
+const nameRegex = /^[a-zA-Z0-9]{1,10}$/;
+
 // Handle number of players selection
 numPlayersDropdown.addEventListener('change', () => {
     maxPlayers = parseInt(numPlayersDropdown.value);
@@ -99,20 +102,23 @@ numPlayersDropdown.addEventListener('change', () => {
 // Add player names
 addPlayerButton.addEventListener('click', () => {
     const playerName = playerNameInput.value.trim();
-    if (playerName) {
-        playerNames.push(playerName);
-        const listItem = document.createElement('li');
-        listItem.textContent = playerName;
-        listItem.className = 'list-group-item';
-        playerList.appendChild(listItem);
+    if (!nameRegex.test(playerName)) {
+        alert("Invalid name! Use only letters or numbers, and ensure it's 1-10 characters long.");
+        return;
+    }
 
-        playerNameInput.value = '';
-        if (playerNames.length < maxPlayers) {
-            playerLabel.textContent = `Player ${playerNames.length + 1} Name:`;
-        } else {
-            playerNamesSection.style.display = 'none';
-            timerSection.style.display = 'block';
-            submitButton.style.display = 'block';
-        }
+    playerNames.push(playerName);
+    const listItem = document.createElement('li');
+    listItem.textContent = playerName;
+    listItem.className = 'list-group-item';
+    playerList.appendChild(listItem);
+
+    playerNameInput.value = '';
+    if (playerNames.length < maxPlayers) {
+        playerLabel.textContent = `Player ${playerNames.length + 1} Name:`;
+    } else {
+        playerNamesSection.style.display = 'none';
+        timerSection.style.display = 'block';
+        submitButton.style.display = 'block';
     }
 });

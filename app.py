@@ -28,7 +28,7 @@ def after_request(response):
 
 @app.route("/start", methods=["GET", "POST"])
 def start():
-    if request.method == "POST":
+if request.method == "POST":
     # Get number of players
     num_players = int(request.form.get("num_players", 0))
     if num_players < 1 or num_players > 4:
