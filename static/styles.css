@@ -121,9 +121,9 @@ body {
     grid-column: 2 / 3;
 }
 
-#num_players option {
+option select {
     text-align: center;
-    font-size: 20px;
+    font-size: 40px;
     font-weight: bold;
 }
 
