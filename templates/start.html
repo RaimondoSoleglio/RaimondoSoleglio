@@ -6,42 +6,44 @@
 
 {% block main %}
     <div class="start-main-content">
-        <form class="start-item-1" id="setup-form" method="POST" action="/main">
+        <div class="start-item-1">
+            <form id="setup-form" method="POST" action="/main">
 
-            <!-- Number of Players Dropdown -->
-            <div class="form-group">
-                <label for="num_players"><h3>How many players?</h3></label>
-                <select id="num_players" name="num_players" class="form-control" required>
-                    <option value="" disabled selected><h4>Select number of players</h4></option>
-                    <option value="1">1 Player</option>
-                    <option value="2">2 Players</option>
-                    <option value="3">3 Players</option>
-                    <option value="4">4 Players</option>
-                </select>
-            </div>
+                <!-- Number of Players Dropdown -->
+                <div class="form-group">
+                    <label for="num_players"><h3>How many players?</h3></label>
+                    <select id="num_players" name="num_players" class="form-control" required>
+                        <option value="" disabled selected><h4>Select number of players</h4></option>
+                        <option value="1">1 Player</option>
+                        <option value="2">2 Players</option>
+                        <option value="3">3 Players</option>
+                        <option value="4">4 Players</option>
+                    </select>
+                </div>
 
-            <!-- Player Names (One at a Time) -->
-            <div id="player-names-section" class="form-group" style="display: none;">
-                <label id="player-label" for="player_name">Player 1 Name:</label>
-                <input type="text" id="player_name" name="player_name" class="form-control" required>
-                <button type="button" id="add-player" class="btn btn-primary mt-2">Add Player</button>
-                <ul id="player-list" class="list-group mt-3"></ul>
-            </div>
+                <!-- Player Names (One at a Time) -->
+                <div id="player-names-section" class="form-group" style="display: none;">
+                    <label id="player-label" for="player_name">Player 1 Name:</label>
+                    <input type="text" id="player_name" name="player_name" class="form-control" required>
+                    <button type="button" id="add-player" class="btn btn-primary mt-2">Add Player</button>
+                    <ul id="player-list" class="list-group mt-3"></ul>
+                </div>
 
-            <!-- Timer Selection -->
-            <div id="timer-section" class="form-group" style="display: none;">
-                <label for="timer">Select Timer (seconds):</label>
-                <select id="timer" name="timer" class="form-control" required>
-                    <option value="" disabled selected>Select timer duration</option>
-                    <option value="15">15 Seconds</option>
-                    <option value="30">30 Seconds</option>
-                    <option value="45">45 Seconds</option>
-                    <option value="60">60 Seconds</option>
-                </select>
-            </div>
+                <!-- Timer Selection -->
+                <div id="timer-section" class="form-group" style="display: none;">
+                    <label for="timer">Select Timer (seconds):</label>
+                    <select id="timer" name="timer" class="form-control" required>
+                        <option value="" disabled selected>Select timer duration</option>
+                        <option value="15">15 Seconds</option>
+                        <option value="30">30 Seconds</option>
+                        <option value="45">45 Seconds</option>
+                        <option value="60">60 Seconds</option>
+                    </select>
+                </div>
 
-            <!-- Submit Button -->
-            <button type="submit" id="submit-button" class="btn btn-success mt-4" style="display: none;">Enter</button>
-        </form>
+                <!-- Submit Button -->
+                <button type="submit" id="submit-button" class="btn btn-success mt-4" style="display: none;">Enter</button>
+            </form>
+        </div>
     </div>
 {% endblock %}

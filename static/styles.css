@@ -104,11 +104,16 @@ body {
     grid-template-columns: auto auto auto;
     gap: 2rem; /* Space between columns */
     padding: 2rem;
-    background-color: #f9f9f9;
-    padding: 1rem;
     border-radius: 8px;
     text-align: center;
 }
+
+.start-main-content > div {
+    background-color: #f9f9f9;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 30px;
+  }
 
 .start-item-1 {
     display: grid;
