@@ -67,3 +67,52 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+
+
+// for the start.html
+
+// JavaScript for dynamic form behavior
+const numPlayersDropdown = document.getElementById('num_players');
+const playerNamesSection = document.getElementById('player-names-section');
+const timerSection = document.getElementById('timer-section');
+const playerList = document.getElementById('player-list');
+const playerLabel = document.getElementById('player-label');
+const addPlayerButton = document.getElementById('add-player');
+const playerNameInput = document.getElementById('player_name');
+const submitButton = document.getElementById('submit-button');
+
+let playerNames = [];
+let maxPlayers = 0;
+
+// Handle number of players selection
+numPlayersDropdown.addEventListener('change', () => {
+    maxPlayers = parseInt(numPlayersDropdown.value);
+    playerNames = [];
+    playerList.innerHTML = ''; // Clear the list
+    playerNamesSection.style.display = 'block';
+    playerLabel.textContent = 'Player 1 Name:';
+    timerSection.style.display = 'none';
+    submitButton.style.display = 'none';
+});
+
+// Add player names
+addPlayerButton.addEventListener('click', () => {
+    const playerName = playerNameInput.value.trim();
+    if (playerName) {
+        playerNames.push(playerName);
+        const listItem = document.createElement('li');
+        listItem.textContent = playerName;
+        listItem.className = 'list-group-item';
+        playerList.appendChild(listItem);
+
+        playerNameInput.value = '';
+        if (playerNames.length < maxPlayers) {
+            playerLabel.textContent = `Player ${playerNames.length + 1} Name:`;
+        } else {
+            playerNamesSection.style.display = 'none';
+            timerSection.style.display = 'block';
+            submitButton.style.display = 'block';
+        }
+    }
+});
