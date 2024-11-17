@@ -121,7 +121,7 @@ body {
     grid-column: 2 / 3;
 }
 
-#num_players, #player-names-section, #timer-section {
+#num_players, #player-names-section {
     text-align: center;
     font-size: 24px;
     padding: 8px;
@@ -129,7 +129,7 @@ body {
     border-radius: 4px;
 }
 
-#num_players option {
+option {
     font-size: 24px;
     padding: 5px;
 }
