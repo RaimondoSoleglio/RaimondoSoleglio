@@ -54,10 +54,15 @@ def get_random_actor():
 # index
 @app.route("/")
 def index():
+    return render_template("index.html")
+
+# main
+@app.route("/main")
+def main():
     # Get a random actor if none has been set
     current_actor = session.get("current_actor") or get_random_actor()
     session["current_actor"] = current_actor
-    return render_template("index.html", actor=current_actor)
+    return render_template("main.html", actor=current_actor)
 
 # query route
 @app.route("/query", methods=["GET"])
