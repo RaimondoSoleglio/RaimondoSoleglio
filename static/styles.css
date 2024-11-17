@@ -101,14 +101,19 @@ body {
 
 .start-main-content {
     display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: 3fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
     gap: 2rem; /* Space between columns */
     padding: 2rem;
     background-color: #f9f9f9;
     padding: 1rem;
     border-radius: 8px;
     text-align: center;
+}
+
+.start-item-1 {
+    display: grid;
+    grid-columns: 2 / 3;
 }
 
 #num_players option {
