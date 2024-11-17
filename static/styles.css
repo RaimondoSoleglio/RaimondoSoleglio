@@ -129,13 +129,14 @@ body {
     border-radius: 4px;
 }
 
-option, input {
-    font-size: 24px;
+option, #player-names-section input#player_name {
+    font-size: 20px;
     padding: 5px;
 }
 
 .btn {
-    font-size: 22px;
+    vertical-align: center;
+    font-size: 20px;
 }
 
 /* to review */
