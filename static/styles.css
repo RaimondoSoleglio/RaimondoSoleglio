@@ -129,7 +129,7 @@ body {
     border-radius: 4px;
 }
 
-option, #player-name {
+option, input {
     font-size: 24px;
     padding: 5px;
 }
