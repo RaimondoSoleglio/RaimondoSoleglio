@@ -151,8 +151,10 @@ ul li {
     margin-bottom: 1rem;
 }
 
+
 @media (max-width: 768px) {
     .main-content {
         grid-template-columns: 1fr; /* Stack columns on smaller screens */
     }
 }
+
