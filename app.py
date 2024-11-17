@@ -34,7 +34,7 @@ def start():
     db.execute("DELETE FROM actors")
     db.execute("DELETE FROM movies")
 
-    
+    # here
 
     return redirect("/main")  # Redirect to main game page
 
