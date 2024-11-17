@@ -99,6 +99,14 @@ body {
     background-color: #f0f0f0;
 }
 
+.start-main-content {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 3fr; 
+    gap: 2rem; /* Space between columns */
+    padding: 2rem;
+}
+
 /* to review */
 .main-content {
     display: grid;
