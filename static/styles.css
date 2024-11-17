@@ -52,6 +52,11 @@ nav .navbar-brand .green
     text-align: center;
 }
 
+body {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
 
 #results {
     border: 1px solid #ccc;
