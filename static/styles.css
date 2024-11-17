@@ -95,7 +95,7 @@ nav .navbar-brand .green
 /* to review */
 .main-content {
     display: grid;
-    grid-template-columns: 3fr 1fr; /* 2 columns: left (3), right (1) */
+    grid-template-columns: 4fr 1fr; /* 2 columns: left (3), right (1) */
     grid-template-rows: auto; /* The rows are flexible */
     gap: 2rem; /* Space between columns */
     padding: 2rem;
@@ -103,7 +103,7 @@ nav .navbar-brand .green
 
 .left-section {
     display: grid;
-    grid-rows: 1fr 3fr; /* Top block is 1, bottom block is 3 */
+    grid-template-rows: 1fr 5fr; /* Top block is 1, bottom block is 3 */
     gap: 1rem;
 }
 
