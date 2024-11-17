@@ -112,6 +112,8 @@ body {
     background-color: #f9f9f9;
     text-align: center;
     padding: 20px 0;
+    text-align: center;
+    font-size: 24px;
   }
 
 .start-item-1 {
@@ -119,17 +121,21 @@ body {
     grid-column: 2 / 3;
 }
 
-#num_players {
+#num_players #player-names-section #timer-section {
     text-align: center;
-    font-size: 16px; /* Adjust the font size */
-    padding: 8px; /* Add padding for better spacing */
-    border: 1px solid #ccc; /* Optional: border for aesthetics */
-    border-radius: 4px; /* Optional: rounded corners */
+    font-size: 24px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 #num_players option {
-    font-size: 16px; /* Adjust the font size of options */
-    padding: 5px; /* Optional: improve spacing in options */
+    font-size: 24px;
+    padding: 5px;
+}
+
+.btn {
+    font-size: 22px;
 }
 
 /* to review */
