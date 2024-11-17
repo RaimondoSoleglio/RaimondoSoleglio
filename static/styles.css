@@ -121,9 +121,9 @@ body {
     grid-column: 2 / 3;
 }
 
-option select {
+option, select {
     text-align: center;
-    font-size: 40px;
+    font-size: 120px;
     font-weight: bold;
 }
 
