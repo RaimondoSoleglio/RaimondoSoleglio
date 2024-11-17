@@ -5,10 +5,43 @@
 {% endblock %}
 
 {% block main %}
-
     <div class="start-main-content">
-        <div class="start-item-1">
-            <h2>How many players?</h2>
-            
+        <form id="setup-form" method="POST" action="/start">
 
+            <!-- Number of Players Dropdown -->
+            <div class="form-group">
+                <label for="num_players">How many players?</label>
+                <select id="num_players" name="num_players" class="form-control" required>
+                    <option value="" disabled selected>Select number of players</option>
+                    <option value="1">1 Player</option>
+                    <option value="2">2 Players</option>
+                    <option value="3">3 Players</option>
+                    <option value="4">4 Players</option>
+                </select>
+            </div>
+
+            <!-- Player Names (One at a Time) -->
+            <div id="player-names-section" class="form-group" style="display: none;">
+                <label id="player-label" for="player_name">Player 1 Name:</label>
+                <input type="text" id="player_name" name="player_name" class="form-control" required>
+                <button type="button" id="add-player" class="btn btn-primary mt-2">Add Player</button>
+                <ul id="player-list" class="list-group mt-3"></ul>
+            </div>
+
+            <!-- Timer Selection -->
+            <div id="timer-section" class="form-group" style="display: none;">
+                <label for="timer">Select Timer (seconds):</label>
+                <select id="timer" name="timer" class="form-control" required>
+                    <option value="" disabled selected>Select timer duration</option>
+                    <option value="15">15 Seconds</option>
+                    <option value="30">30 Seconds</option>
+                    <option value="45">45 Seconds</option>
+                    <option value="60">60 Seconds</option>
+                </select>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" id="submit-button" class="btn btn-success mt-4" style="display: none;">Enter</button>
+        </form>
+    </div>
 {% endblock %}
