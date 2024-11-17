@@ -101,8 +101,7 @@ body {
 
 .start-main-content {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto;
+    grid-template-columns: auto auto auto;
     gap: 2rem; /* Space between columns */
     padding: 2rem;
     background-color: #f9f9f9;
