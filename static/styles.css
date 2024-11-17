@@ -129,7 +129,7 @@ body {
     border-radius: 4px;
 }
 
-option, #player-names-section input#player_name {
+option, #player-names-section input#player_name, #timer-section label#timer {
     font-size: 20px;
     padding: 5px;
 }
