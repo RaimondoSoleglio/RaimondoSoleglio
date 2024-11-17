@@ -63,8 +63,6 @@ def start():
         db.execute("DELETE FROM actors")
         db.execute("DELETE FROM movies")
 
-        # Redirect to the main game
-        return redirect("/main")
 
     return render_template("start.html")
 
