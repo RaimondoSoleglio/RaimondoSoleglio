@@ -102,9 +102,13 @@ body {
 .start-main-content {
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: 3fr; 
+    grid-template-rows: 3fr;
     gap: 2rem; /* Space between columns */
     padding: 2rem;
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
 }
 
 /* to review */
