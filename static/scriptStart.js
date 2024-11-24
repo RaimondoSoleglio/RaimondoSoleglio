@@ -69,6 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
             addPlayerButton.style.display = 'none';
             timerSection.style.display = 'inline';
             submitButton.style.display = 'inline';
+            timerDropdown.focus();
         }
     });
 
