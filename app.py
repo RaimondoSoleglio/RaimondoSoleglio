@@ -57,11 +57,14 @@ def start():
         session["num_players"] = num_players
         session["player_names"] = player_names
         session["timer"] = timer
+        session["lives"] = [3] * num_players  # Initialize lives for each player
+
 
         # Reset session database
         session.pop("current_actor", None)
         db.execute("DELETE FROM actors")
         db.execute("DELETE FROM movies")
+        
         return redirect("/main")
 
 
