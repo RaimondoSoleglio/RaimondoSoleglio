@@ -118,7 +118,7 @@ addPlayerButton.addEventListener('click', () => {
         playerLabel.textContent = `Player ${playerNames.length + 1} Name:`;
     } else {
         playerLabel.style.display = 'none';
-        playerLabel.style.display = 'none';
+        playerNameInput.style.display = 'none';
         timerSection.style.display = 'inline';
         submitButton.style.display = 'inline';
     }
