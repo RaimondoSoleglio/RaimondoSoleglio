@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // JavaScript for dynamic form behavior
     const numPlayersDropdown = document.getElementById('num_players');
+    const numPlayersButton = document.getElementById('add-number');
     const playerNamesSection = document.getElementById('player-names-section');
     const timerSection = document.getElementById('timer-section');
     const timerDropdown = document.getElementById('timer');
@@ -20,17 +21,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const nameRegex = /^[a-zA-Z0-9]{1,10}$/;
 
     // Handle number of players selection
-    numPlayersDropdown.addEventListener('blur', () => {
-        if (numPlayersDropdown.value !== "") {
-            maxPlayers = parseInt(numPlayersDropdown.value);
-            playerNames = [];
-            playerList.innerHTML = ''; // Clear the list
-            playerNamesSection.style.display = 'block';
-            playerLabel.textContent = 'Player 1 Name:';
-            numPlayersDropdown.disabled = true;
-            timerSection.style.display = 'none';
-            submitButton.style.display = 'none';
+    numPlayersButton.addEventListener('click', () => {
+        if (numPlayersDropdown.value === "") {
+            alert("Inset 1 to 4 players.");
         }
+
+        maxPlayers = parseInt(numPlayersDropdown.value);
+        playerNames = [];
+        playerList.innerHTML = ''; // Clear the list
+        playerNamesSection.style.display = 'block';
+        playerLabel.textContent = 'Player 1 Name:';
+        numPlayersDropdown.disabled = true;
+        timerSection.style.display = 'none';
+        submitButton.style.display = 'none';
     });
 
     // Add player names
