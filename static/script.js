@@ -137,13 +137,3 @@ timerDropdown.addEventListener('change', () => {
     submitButton.style.display = 'inline';
 })
 
-// Handle submit button click
-submitButton.addEventListener('click', (event) => {
-    // Ensure all player names are added and timer is selected before submitting
-    if (playerNames.length === maxPlayers && timerDropdown.value) {
-        return; // Let the form submit naturally
-    } else {
-        event.preventDefault(); // Prevent form submission if fields are not filled
-        alert("Please complete all fields before proceeding.");
-    }
-});
