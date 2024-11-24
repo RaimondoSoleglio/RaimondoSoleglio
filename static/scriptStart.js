@@ -12,7 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const playerNameInput = document.getElementById('player_name');
     const submitButton = document.getElementById('submit-button');
     const form = document.getElementById('setup-form')
-    const playerNamesForFlask = document.getElementById('player_names'); // Hidden input field
+    const hiddenInput = document.getElementById('player_names');
+
 
 
     let playerNames = [];
@@ -57,6 +58,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         playerNames.push(playerName);
+
+        // Add a hidden input for each player name
+        hiddenInput.value = playerName;
+        form.appendChild(hiddenInput);
+
         const listItem = document.createElement('li');
         listItem.textContent = playerName;
         listItem.className = 'list-group-item';
@@ -80,8 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     alert("Choose a time difficulty.");
                     return;
                 }
-                // Update hidden input with JSON string of player names
-                playerNamesForFlask.value = JSON.stringify(playerNames);
             })
         }
     });
