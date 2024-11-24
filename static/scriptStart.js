@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById('setup-form')
 
 
-    form.addEventListener('keydown', function (event) {
+    submitButton.addEventListener('keydown', function (event) {
         if (event.key === 'Enter') {
             event.preventDefault(); // Prevent form submission on Enter
         }
