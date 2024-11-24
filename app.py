@@ -29,6 +29,7 @@ def after_request(response):
 @app.route("/start", methods=["GET", "POST"])
 def start():
     if request.method == "POST":
+        print("Form submitted")  # Debug statement
         # Get number of players
         num_players = int(request.form.get("num_players", 0))
         if num_players < 1 or num_players > 4:
@@ -64,7 +65,9 @@ def start():
         session.pop("current_actor", None)
         db.execute("DELETE FROM actors")
         db.execute("DELETE FROM movies")
-        
+
+        print("Redirecting to /main")  # Debug statement
+
         return redirect("/main")
 
 
