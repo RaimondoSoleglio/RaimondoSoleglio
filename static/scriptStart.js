@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const playerNameInput = document.getElementById('player_name');
     const submitButton = document.getElementById('submit-button');
     const form = document.getElementById('setup-form')
+    const playerNamesForFlask = document.getElementById('player_names'); // Hidden input field
+
 
     let playerNames = [];
     let maxPlayers = 0;
@@ -79,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     return;
                 }
                 // Update hidden input with JSON string of player names
-                playerNamesInput.value = JSON.stringify(playerNames);
+                playerNamesForFlask.value = JSON.stringify(playerNames);
             })
         }
     });
