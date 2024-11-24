@@ -56,8 +56,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (playerNames.length < maxPlayers) {
             playerLabel.textContent = `Player ${playerNames.length + 1} Name:`;
         } else {
-            playerLabel.style.display = 'none';
-            playerNameInput.style.display = 'none';
+            playerLabel.style.visibility = 'none';
+            playerNameInput.style.visibility = 'none';
             addPlayerButton.style.display = 'none';
             timerSection.style.display = 'inline';
         }
