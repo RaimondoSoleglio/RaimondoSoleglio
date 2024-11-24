@@ -117,7 +117,7 @@ addPlayerButton.addEventListener('click', () => {
     if (playerNames.length < maxPlayers) {
         playerLabel.textContent = `Player ${playerNames.length + 1} Name:`;
     } else {
-        playerNamesSection.style.display = 'none';
+       //  playerNamesSection.style.display = 'none';
         timerSection.style.display = 'inline';
         submitButton.style.display = 'inline';
     }
