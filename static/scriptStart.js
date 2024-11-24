@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     numPlayersButton.addEventListener('click', () => {
         if (numPlayersDropdown.value === "") {
             alert("Inset 1 to 4 players.");
+            return;
         }
 
         maxPlayers = parseInt(numPlayersDropdown.value);
@@ -32,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         playerNamesSection.style.display = 'block';
         playerLabel.textContent = 'Player 1 Name:';
         numPlayersDropdown.disabled = true;
+        numPlayersButton.display = 'none';
         timerSection.style.display = 'none';
         submitButton.style.display = 'none';
     });
