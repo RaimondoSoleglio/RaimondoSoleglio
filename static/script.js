@@ -136,3 +136,26 @@ addPlayerButton.addEventListener('click', () => {
 timerDropdown.addEventListener('change', () => {
     submitButton.style.display = 'inline';
 })
+
+// Handle form submission with "Are you ready?" countdown
+submitButton.addEventListener('click', (event) => {
+    event.preventDefault(); // Prevent default form submission
+
+    // Display "Are you ready?" and countdown
+    let countdownContainer = document.createElement('div');
+    countdownContainer.className = 'countdown-container';
+    countdownContainer.innerHTML = "<h2>Are you ready?</h2><p>3</p>";
+    document.body.appendChild(countdownContainer);
+
+    let countdownNumber = 3;
+    let countdownInterval = setInterval(() => {
+        countdownNumber--;
+        countdownContainer.querySelector('p').textContent = countdownNumber;
+
+        if (countdownNumber === 0) {
+            clearInterval(countdownInterval);
+            document.body.removeChild(countdownContainer); // Remove countdown UI
+            document.getElementById('setup-form').submit(); // Submit the form
+        }
+    }, 1000);
+});
