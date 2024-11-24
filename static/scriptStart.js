@@ -66,10 +66,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    addPlayerButton.submtButton('click', () => {
+    submitButton.addEventListener('click', () => {
         if (timerDropdown.value === "") {
             alert("Choose a time difficulty.");
             return;
         }
-    }
+    })
 });
