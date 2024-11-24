@@ -78,6 +78,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     alert("Choose a time difficulty.");
                     return;
                 }
+                // Update hidden input with JSON string of player names
+                playerNamesInput.value = JSON.stringify(playerNames);
             })
         }
     });
