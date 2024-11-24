@@ -22,6 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Handle number of players selection
     numPlayersDropdown.addEventListener('change', () => {
         maxPlayers = parseInt(numPlayersDropdown.value);
+        console.log("Number of players selected: ", maxPlayers); // Debugging log
+
         playerNames = [];
         playerList.innerHTML = ''; // Clear the list
         playerNamesSection.style.display = 'block';
