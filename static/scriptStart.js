@@ -20,13 +20,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const nameRegex = /^[a-zA-Z0-9]{1,10}$/;
 
     // Handle number of players selection
-    numPlayersDropdown.querySelectorAll('option').forEach(option => option.addEventListener('click', () => {
+    numPlayersDropdown.addEventListener('input', () => {
         maxPlayers = parseInt(numPlayersDropdown.value);
-        numPlayersDropdown.disabled = true;
         playerNames = [];
         playerList.innerHTML = ''; // Clear the list
         playerNamesSection.style.display = 'block';
         playerLabel.textContent = 'Player 1 Name:';
+        numPlayersDropdown.disabled = true;
         timerSection.style.display = 'none';
         submitButton.style.display = 'none';
     });
