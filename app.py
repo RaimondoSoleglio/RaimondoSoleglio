@@ -39,8 +39,6 @@ def start():
 
         # Get player names
         player_names = request.form.getlist("player_name")
-        print(f"Number of players: {player_names}")  # Debug statement
-
         if len(player_names) != num_players:
             flash("Please enter names for all players.")
             return redirect("/start")
