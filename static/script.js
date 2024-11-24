@@ -76,6 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const numPlayersDropdown = document.getElementById('num_players');
 const playerNamesSection = document.getElementById('player-names-section');
 const timerSection = document.getElementById('timer-section');
+const timerDropdown = document.getElementById('timer');
 const playerList = document.getElementById('player-list');
 const playerLabel = document.getElementById('player-label');
 const addPlayerButton = document.getElementById('add-player');
@@ -126,6 +127,6 @@ addPlayerButton.addEventListener('click', () => {
 
 // Enter button appears after Timer selection
 
-numPlayersDropdown.addEventListener('change', () => {
+timerDropdown.addEventListener('change', () => {
     submitButton.style.display = 'inline';
 }
