@@ -121,6 +121,11 @@ addPlayerButton.addEventListener('click', () => {
         playerNameInput.style.display = 'none';
         addPlayerButton.style.display = 'none';
         timerSection.style.display = 'inline';
-        submitButton.style.display = 'inline';
     }
 });
+
+// Enter button appears after Timer selection
+
+numPlayersDropdown.addEventListener('change', () => {
+    submitButton.style.display = 'inline';
+}
