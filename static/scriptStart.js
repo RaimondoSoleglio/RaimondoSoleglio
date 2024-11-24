@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         playerNames = [];
         playerList.innerHTML = ''; // Clear the list
         playerNamesSection.style.display = 'block';
+        playerNameInput.focus();
         playerLabel.textContent = 'Player 1 Name:';
         numPlayersDropdown.disabled = true;
         numPlayersButton.display = 'none';
