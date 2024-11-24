@@ -202,7 +202,7 @@ def guess():
 
         # Update the session with the new actor
         session["current_actor"] = new_actor
-        return redirect("/")
+        return redirect("/main")
     '''
     if any(actor["name"] == current_actor for actor in cast_data):
         # Add movie to the session database
