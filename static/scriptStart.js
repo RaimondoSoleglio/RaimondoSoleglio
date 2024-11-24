@@ -41,14 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Add player names
     addPlayerButton.addEventListener('click', () => {
 
-        // Add player names with Enter key, only during player name entry stage
-        playerNameInput.addEventListener('keydown', function handleEnterKey(event) {
-            if (event.key === 'Enter') {
-                event.preventDefault();
-                addPlayerButton.click();
-            }
-        });
-
         const playerName = playerNameInput.value.trim();
         if (!nameRegex.test(playerName)) {
             alert("Invalid name! Use only letters or numbers, and ensure it's 1-10 characters long.");
