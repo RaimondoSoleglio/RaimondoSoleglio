@@ -66,7 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Enter button appears after Timer selection
     if (timerDropdown.value === "") {
         alert("Choose a time difficulty.");
         return;
