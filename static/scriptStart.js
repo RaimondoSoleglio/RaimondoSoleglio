@@ -72,6 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
             timerSection.style.display = 'inline';
             submitButton.style.display = 'inline';
             timerDropdown.focus();
+            console.log(playerNames);
             submitButton.addEventListener('click', () => {
                 if (timerDropdown.value === "") {
                     alert("Choose a time difficulty.");
