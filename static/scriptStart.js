@@ -63,13 +63,13 @@ document.addEventListener("DOMContentLoaded", () => {
             timerSection.style.display = 'inline';
             submitButton.style.display = 'inline';
             timerDropdown.focus();
+            submitButton.addEventListener('click', () => {
+                if (timerDropdown.value === "") {
+                    alert("Choose a time difficulty.");
+                    return;
+                }
+            })
         }
     });
 
-    submitButton.addEventListener('click', () => {
-        if (timerDropdown.value === "") {
-            alert("Choose a time difficulty.");
-            return;
-        }
-    })
 });
