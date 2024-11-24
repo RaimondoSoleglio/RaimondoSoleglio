@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
         playerNamesSection.style.display = 'block';
         playerNameInput.focus();
         playerLabel.textContent = 'Player 1 Name:';
-        numPlayersDropdown.disabled = true;
+        // numPlayersDropdown.disabled = true;
         numPlayersButton.display = 'none';
         timerSection.style.display = 'none';
         submitButton.style.display = 'none';
