@@ -119,6 +119,7 @@ addPlayerButton.addEventListener('click', () => {
     } else {
         playerLabel.style.display = 'none';
         playerNameInput.style.display = 'none';
+        addPlayerButton.style.display = 'none';
         timerSection.style.display = 'inline';
         submitButton.style.display = 'inline';
     }
