@@ -95,6 +95,7 @@ numPlayersDropdown.addEventListener('change', () => {
     playerNames = [];
     playerList.innerHTML = ''; // Clear the list
     playerNamesSection.style.display = 'block';
+    playerNameInput.setAttribute('required', 'required');
     playerLabel.textContent = 'Player 1 Name:';
     timerSection.style.display = 'none';
     submitButton.style.display = 'none';
