@@ -33,13 +33,14 @@ def start():
         print("Form submitted")  # Debug statement
         # Get number of players
         num_players = int(request.form.get("num_players", 0))
-        print(f"Number of players: {num_players}")  # Debug statement
         if num_players < 1 or num_players > 4:
             flash("Number of players must be between 1 and 4.")
             return redirect("/start")
 
         # Get player names
         player_names = request.form.getlist("player_name")
+        print(f"Number of players: {player_names}")  # Debug statement
+
         if len(player_names) != num_players:
             flash("Please enter names for all players.")
             return redirect("/start")
