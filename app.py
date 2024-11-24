@@ -51,6 +51,7 @@ def start():
         timer = int(request.form.get("timer", 0))
         if timer not in [15, 30, 45, 60]:
             flash("Invalid timer value selected.")
+            return redirect("/start")
 
         # Save game settings in session
         session["num_players"] = num_players
@@ -61,7 +62,7 @@ def start():
         session.pop("current_actor", None)
         db.execute("DELETE FROM actors")
         db.execute("DELETE FROM movies")
-            return redirect("/main")
+        return redirect("/main")
 
 
     return render_template("start.html")
