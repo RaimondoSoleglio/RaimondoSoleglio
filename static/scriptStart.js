@@ -33,11 +33,11 @@ document.addEventListener("DOMContentLoaded", () => {
         playerNameInput.focus();
         playerLabel.textContent = 'Player 1 Name:';
         numPlayersDropdown.style.pointerEvents = 'none';
-        numPlayersButton.display = 'none';
         timerSection.style.display = 'none';
         submitButton.style.display = 'none';
     });
 
+    numPlayersButton.display = 'none';
     // Add player names with Enter key, only during player name entry stage
     playerNameInput.addEventListener('keydown', function handleEnterKey(event) {
         if (event.key === 'Enter') {
