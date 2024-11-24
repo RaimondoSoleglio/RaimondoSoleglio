@@ -60,13 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
         listItem.className = 'list-group-item';
         playerList.appendChild(listItem);
 
-         // Create a hidden input for each player name
-        const hiddenInput = document.createElement('input');
-        hiddenInput.type = 'hidden';
-        hiddenInput.name = 'player_name'; // Set the name attribute for form submission
-        hiddenInput.value = playerName;
-        form.appendChild(hiddenInput);
-
         playerNameInput.value = '';
         if (playerNames.length < maxPlayers) {
             playerLabel.textContent = `Player ${playerNames.length + 1} Name:`;
