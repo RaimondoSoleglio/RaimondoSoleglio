@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     return;
                 }
 
-            document.getElementById('array_data').value = JSON.stringify(array);
+            document.getElementsById('player_names').value = JSON.stringify(playerNames);
             })
         }
     });
