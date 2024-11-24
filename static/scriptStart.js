@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        numPlayersButton.display = 'none';
         maxPlayers = parseInt(numPlayersDropdown.value);
         playerNames = [];
         playerList.innerHTML = ''; // Clear the list
@@ -37,7 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
         submitButton.style.display = 'none';
     });
 
-    numPlayersButton.display = 'none';
     // Add player names with Enter key, only during player name entry stage
     playerNameInput.addEventListener('keydown', function handleEnterKey(event) {
         if (event.key === 'Enter') {
