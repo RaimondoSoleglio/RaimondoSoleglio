@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
         playerNamesSection.style.display = 'block';
         playerNameInput.focus();
         playerLabel.textContent = 'Player 1 Name:';
-        // numPlayersDropdown.disabled = true;
+        numPlayersDropdown.disabled = true;
         numPlayersButton.display = 'none';
         timerSection.style.display = 'none';
         submitButton.style.display = 'none';
@@ -59,6 +59,13 @@ document.addEventListener("DOMContentLoaded", () => {
         listItem.textContent = playerName;
         listItem.className = 'list-group-item';
         playerList.appendChild(listItem);
+
+         // Create a hidden input for each player name
+        const hiddenInput = document.createElement('input');
+        hiddenInput.type = 'hidden';
+        hiddenInput.name = 'player_name'; // Set the name attribute for form submission
+        hiddenInput.value = playerName;
+        form.appendChild(hiddenInput);
 
         playerNameInput.value = '';
         if (playerNames.length < maxPlayers) {
