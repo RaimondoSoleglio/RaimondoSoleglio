@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    // for the start.html
-
     // JavaScript for dynamic form behavior
     const numPlayersDropdown = document.getElementById('num_players');
     const numPlayersButton = document.getElementById('add-number');
@@ -13,6 +11,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const addPlayerButton = document.getElementById('add-player');
     const playerNameInput = document.getElementById('player_name');
     const submitButton = document.getElementById('submit-button');
+    const form = document.getElementById('setup-form')
+
+
+    form.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevent form submission on Enter
+        }
+    });
 
     let playerNames = [];
     let maxPlayers = 0;
@@ -54,11 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
         playerList.appendChild(listItem);
 
         playerNameInput.value = '';
-        playerNameInput.addEventListener('keydown', function (event) {
-            if (event.key === 'Enter') {
-                event.preventDefault(); // Prevent form submission on Enter
-            }
-        });
         if (playerNames.length < maxPlayers) {
             playerLabel.textContent = `Player ${playerNames.length + 1} Name:`;
             playerNameInput.focus();
