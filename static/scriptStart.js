@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Handle number of players selection
     numPlayersButton.addEventListener('click', () => {
         if (numPlayersDropdown.value === "") {
-            alert("Inset 1 to 4 players.");
+            alert("Insert 1 to 4 players.");
             return;
         }
 
@@ -67,8 +67,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Enter button appears after Timer selection
-
-    submitButton.addEventListener('click', () => {
-        
-    })
+    if (timerDropdown.value === "") {
+        alert("Choose a time difficulty.");
+        return;
+    }
 });
