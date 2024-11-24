@@ -41,6 +41,7 @@ def start():
         player_names = request.form.getlist("player_names")
         if len(player_names) != num_players:
             flash("Please enter names for all players.")
+            print(player_names)
             return redirect("/start")
 
         # Validate each player's name
