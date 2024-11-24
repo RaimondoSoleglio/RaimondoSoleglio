@@ -56,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
         playerNameInput.value = '';
         if (playerNames.length < maxPlayers) {
             playerLabel.textContent = `Player ${playerNames.length + 1} Name:`;
+            playerNameInput.focus();
         } else {
             playerLabel.style.display = 'none';
             playerNameInput.style.display = 'none';
