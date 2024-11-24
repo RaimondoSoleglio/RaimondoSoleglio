@@ -67,5 +67,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     timerDropdown.addEventListener('change', () => {
         submitButton.style.display = 'inline';
+        console.log("Timer selected, showing submit button."); // Debugging log
+
+    // Ensure visibility in case of any issues
+    if (submitButton.style.display !== 'inline') {
+        submitButton.style.display = 'inline';
+    }
     })
 });
