@@ -66,9 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
             item.classList.toggle("highlight", i === index);
         });
     }
-});
-
-
 
     // for the start.html
 
@@ -90,23 +87,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const nameRegex = /^[a-zA-Z0-9]{1,10}$/;
 
     // Handle number of players selection
-    numPlayersDropdown.addEventListener('change', () => {
-        maxPlayers = parseInt(numPlayersDropdown.value);
-        playerNames = [];
-        playerList.innerHTML = ''; // Clear the list
-        playerNamesSection.style.display = 'block';
-        playerNameInput.setAttribute('required', 'required');
-        playerLabel.textContent = 'Player 1 Name:';
-        timerSection.style.display = 'none';
-        submitButton.style.display = 'none';
-    });
+    if (numPlayersDropdown) {
+        numPlayersDropdown.addEventListener('change', () => {
+            maxPlayers = parseInt(numPlayersDropdown.value);
+            playerNames = [];
+            playerList.innerHTML = ''; // Clear the list
+            playerNamesSection.style.display = 'block';
+            playerNameInput.setAttribute('required', 'required');
+            playerLabel.textContent = 'Player 1 Name:';
+            timerSection.style.display = 'none';
+            submitButton.style.display = 'none';
+        });
 
-    // Add player names
-    playerNameInput.addEventListener('keypress', (event) => {
-        if (event.key === 'Enter') {
-            addPlayerButton.click();
-        }
-    });
+        // Add player names
+        playerNameInput.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                addPlayerButton.click();
+            }
+        });
 
         addPlayerButton.addEventListener('click', () => {
             const playerName = playerNameInput.value.trim();
