@@ -20,8 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const nameRegex = /^[a-zA-Z0-9]{1,10}$/;
 
     // Handle number of players selection
-    numPlayersDropdown.addEventListener('change', () => {
+    numPlayersDropdown.querySelectorAll('option').forEach(option => option.addEventListener('click', () => {
         maxPlayers = parseInt(numPlayersDropdown.value);
+        numPlayersDropdown.disabled = true;
         playerNames = [];
         playerList.innerHTML = ''; // Clear the list
         playerNamesSection.style.display = 'block';
