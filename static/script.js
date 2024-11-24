@@ -126,6 +126,7 @@ addPlayerButton.addEventListener('click', () => {
     } else {
         playerLabel.style.display = 'none';
         playerNameInput.style.display = 'none';
+        playerNameInput.removeAttribute('required');
         addPlayerButton.style.display = 'none';
         timerSection.style.display = 'inline';
     }
