@@ -136,3 +136,9 @@ addPlayerButton.addEventListener('click', () => {
 timerDropdown.addEventListener('change', () => {
     submitButton.style.display = 'inline';
 })
+
+// Handle submit button click
+submitButton.addEventListener('click', (event) => {
+    event.preventDefault(); // Prevent default to ensure all checks run smoothly
+    document.getElementById('setup-form').submit(); // Explicitly submit the form
+});
