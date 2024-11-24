@@ -13,9 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const submitButton = document.getElementById('submit-button');
     const form = document.getElementById('setup-form')
 
-
- 
-
     let playerNames = [];
     let maxPlayers = 0;
 
