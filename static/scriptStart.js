@@ -70,6 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
             addPlayerButton.style.display = 'none';
             timerSection.style.display = 'inline';
             submitButton.style.display = 'inline';
+            playerNameInput.removeEventListener('keydown', handleEnterKey); // Remove Enter key handler
             timerDropdown.focus();
             submitButton.addEventListener('click', () => {
                 if (timerDropdown.value === "") {
