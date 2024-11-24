@@ -62,18 +62,13 @@ document.addEventListener("DOMContentLoaded", () => {
             playerNameInput.style.display = 'none';
             addPlayerButton.style.display = 'none';
             timerSection.style.display = 'inline';
+            submitButton.style.display = 'inline';
         }
     });
 
     // Enter button appears after Timer selection
 
-    timerDropdown.addEventListener('change', () => {
-        submitButton.style.display = 'inline';
-        console.log("Timer selected, showing submit button."); // Debugging log
-
-    // Ensure visibility in case of any issues
-    if (submitButton.style.display !== 'inline') {
-        submitButton.style.display = 'inline';
-    }
+    submitButton.addEventListener('click', () => {
+        
     })
 });
