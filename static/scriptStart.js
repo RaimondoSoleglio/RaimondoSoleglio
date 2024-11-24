@@ -26,7 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        numPlayersButton.display = 'none';
         maxPlayers = parseInt(numPlayersDropdown.value);
         playerNames = [];
         playerList.innerHTML = ''; // Clear the list
@@ -34,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         playerNameInput.focus();
         playerLabel.textContent = 'Player 1 Name:';
         numPlayersDropdown.style.pointerEvents = 'none';
+        numPlayersButton.style.display = 'none';
         timerSection.style.display = 'none';
         submitButton.style.display = 'none';
     });
