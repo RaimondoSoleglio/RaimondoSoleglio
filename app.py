@@ -38,10 +38,11 @@ def start():
             return redirect("/start")
 
         # Get player names
+        print(request.form.get("player_names"))
         player_names = json.loads(request.form.get("player_names"))
+        print(player_names)
         if len(player_names) != num_players:
             flash("Please enter names for all players.")
-            print(player_names)
             return redirect("/start")
 
         # Validate each player's name
