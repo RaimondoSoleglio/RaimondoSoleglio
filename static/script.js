@@ -101,6 +101,12 @@ numPlayersDropdown.addEventListener('change', () => {
 });
 
 // Add player names
+playerNameInput.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+        addPlayerButton.click();
+    }
+});
+
 addPlayerButton.addEventListener('click', () => {
     const playerName = playerNameInput.value.trim();
     if (!nameRegex.test(playerName)) {
