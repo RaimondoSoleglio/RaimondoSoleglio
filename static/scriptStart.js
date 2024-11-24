@@ -68,6 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
             playerLabel.style.display = 'none';
             playerNameInput.style.display = 'none';
             addPlayerButton.style.display = 'none';
+            playerNameInput.removeAttribute("required");
             timerSection.style.display = 'inline';
             submitButton.style.display = 'inline';
             timerDropdown.focus();
