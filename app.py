@@ -28,6 +28,7 @@ def after_request(response):
 
 @app.route("/start", methods=["GET", "POST"])
 def start():
+    print("Accessing /start route")  # Debug statement
     if request.method == "POST":
         print("Form submitted")  # Debug statement
         # Get number of players
