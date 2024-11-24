@@ -125,9 +125,8 @@ addPlayerButton.addEventListener('click', () => {
     }
 });
 
-/* Enter button appears after Timer selection
+// Enter button appears after Timer selection
 
 timerDropdown.addEventListener('change', () => {
     submitButton.style.display = 'inline';
-}
-*/
+})
