@@ -93,6 +93,7 @@ def get_random_actor():
 
 # index
 @app.route("/")
+@app.route("/home")
 def index():
     return render_template("index.html")
 
