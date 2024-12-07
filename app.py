@@ -87,10 +87,11 @@ def start():
                 return redirect("/start")
 
         # Get timer value
-        timer = int(request.form.get("timer", 0))
-        if timer not in [15, 30, 45, 60]:
-            flash("Invalid timer value selected.")
+        timer = request.form.get("timer")
+        if not timer or int(timer) not in [15, 30, 45, 60]:
+            flash("Please select a valid timer value.")
             return redirect("/start")
+        timer = int(timer)
 
         lives = [3] * num_players  # Initial lives for players
 
