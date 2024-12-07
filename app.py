@@ -126,10 +126,17 @@ def main():
     if not session_id:
         return redirect("/start")  # Redirect if no session
 
+    # Fetch player data
+    players = db.execute("SELECT name, lives FROM players WHERE session_id = ?", session_id)
+    if not players:
+        flash("No players found!")
+        return redirect("/start")  # Redirect if no players found
+
     # Get a random actor if none has been set
     current_actor = session.get("current_actor") or get_random_actor()
     session["current_actor"] = current_actor
-    return render_template("main.html", actor=current_actor)
+
+    return render_template("main.html", actor=current_actor, players=players)
 
 # query route
 @app.route("/query", methods=["GET"])
