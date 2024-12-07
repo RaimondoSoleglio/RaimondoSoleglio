@@ -1,5 +1,5 @@
 from cs50 import SQL
-from flask import Flask, flash, redirect, render_template, request, session, jsonify
+from flask import Flask, flash, redirect, render_template, request, session, jsonify, abort
 from flask_session import Session
 import requests, random, json, uuid
 
@@ -250,4 +250,4 @@ def end_session():
 
 @app.route("/wrong")
 def wrong():
-    return "Wrong answer, try again!", 400
+    abort(400, "Wrong answer, try again!")
