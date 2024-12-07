@@ -86,11 +86,16 @@ def start():
         session["timer"] = timer
         session["lives"] = lives  # Initialize lives for each player
 
+        # Metadata in database
+        db.execute("INSERT INTO sessions (session_id, num_players, timer, player_names, lives) VALUES (?, ?, ?, ?, ?)",
+                   session_id, num_players, timer, json.dumps(player_names), json.dumps(lives))
+
 
         # Reset session database
         session.pop("current_actor", None)
-        db.execute("DELETE FROM actors")
-        db.execute("DELETE FROM movies")
+        # Clear old data tied to this session_id if any
+        db.execute("DELETE FROM actors WHERE session_id = ?", session_id)
+        db.execute("DELETE FROM movies WHERE session_id = ?", session_id)
 
         print("Redirecting to /main")  # Debug statement
 
