@@ -118,6 +118,9 @@ def main():
 @app.route("/query", methods=["GET"])
 def query():
     session_id = session.get("session_id")
+    if not session_id:
+        return redirect("/start")  # Redirect if no session is active
+    
     query = request.args.get('q')
     if not query:
         return jsonify([])
@@ -164,6 +167,8 @@ def query():
 @app.route("/guess", methods=["POST"])
 def guess():
     session_id = session.get("session_id")
+    if not session_id:
+        return redirect("/start")  # Redirect if no session is active
 
     selected_movie = request.form.get("movie_query")
     movie_id = request.form.get("movie_id")  # Movie ID (e.g., 123)
