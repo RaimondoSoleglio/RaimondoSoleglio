@@ -61,7 +61,12 @@ def start():
             return redirect("/start")
 
         # Get player names
-        player_names = json.loads(request.form.get("player_names"))
+        try:                             # as suggested by GPT but can't understand why
+            player_names = json.loads(request.form.get("player_names"))
+        except (TypeError, json.JSONDecodeError):
+            flash("Invalid player names format.")
+            return redirect("/start")
+
         if len(player_names) != num_players:
             flash("Please enter names for all players.")
             return redirect("/start")
