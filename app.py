@@ -26,7 +26,7 @@ def get_random_actor():
 
     # Randomly pick an actor from the filtered list
     if not first_actor:
-        first_actor = db.execute("SELECT name, id FROM starting_actors")  # Handle this case gracefully in the calling function
+        first_actor = db.execute("SELECT name, id FROM starting_actors")
     selected_actor = random.choice(first_actor)
 
     # Add actor to the temporary database
@@ -71,7 +71,7 @@ def start():
             return redirect("/start")
 
         # Get player names
-        try:                            
+        try:
             player_names = json.loads(request.form.get("player_names"))
         except (TypeError, json.JSONDecodeError):
             flash("Invalid player names format.")
