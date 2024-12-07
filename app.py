@@ -235,6 +235,16 @@ def guess():
 
     return redirect("/wrong")
 
+@app.route("/end")
+def end_session():
+    session_id = session.get("session_id")
+    if session_id:
+        db.execute("DELETE FROM sessions WHERE session_id = ?", session_id)
+        db.execute("DELETE FROM actors WHERE session_id = ?", session_id)
+        db.execute("DELETE FROM movies WHERE session_id = ?", session_id)
+        session.clear()
+    return redirect("/")
+
 @app.route("/wrong")
 def wrong():
     return "Wrong answer, try again!", 400
