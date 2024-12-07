@@ -78,11 +78,13 @@ def start():
             flash("Invalid timer value selected.")
             return redirect("/start")
 
+        lives = [3] * num_players  # Initial lives for players
+
         # Save game settings in session
         session["num_players"] = num_players
         session["player_names"] = player_names
         session["timer"] = timer
-        session["lives"] = [3] * num_players  # Initialize lives for each player
+        session["lives"] = lives  # Initialize lives for each player
 
 
         # Reset session database
