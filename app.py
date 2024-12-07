@@ -71,7 +71,7 @@ def start():
             return redirect("/start")
 
         # Get player names
-        try:                             # as suggested by GPT but can't understand why
+        try:                            
             player_names = json.loads(request.form.get("player_names"))
         except (TypeError, json.JSONDecodeError):
             flash("Invalid player names format.")
