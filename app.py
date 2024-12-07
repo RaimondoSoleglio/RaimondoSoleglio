@@ -26,7 +26,7 @@ def get_random_actor():
 
     # Randomly pick an actor from the filtered list
     if not first_actor:
-        return None  # Handle this case gracefully in the calling function
+        first_actor = db.execute("SELECT name, id FROM starting_actors")  # Handle this case gracefully in the calling function
     selected_actor = random.choice(first_actor)
 
     # Add actor to the temporary database
