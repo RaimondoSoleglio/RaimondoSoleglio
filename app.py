@@ -117,6 +117,7 @@ def main():
 # query route
 @app.route("/query", methods=["GET"])
 def query():
+    session_id = session("session_id")
     query = request.args.get('q')
     if not query:
         return jsonify([])
@@ -154,7 +155,7 @@ def query():
         })
 
     # Extract movie IDs already guessed
-    guessed_movie_ids = {row["movie_id"] for row in db.execute("SELECT movie_id FROM movies")}
+    guessed_movie_ids = {row["movie_id"] for row in db.execute("SELECT movie_id FROM movies WHERE session_id = ?", session_id)}
     # Update results to filter out movies already guessed
     unique_movies = [movie for movie in movies if movie["id"] not in guessed_movie_ids]
     return jsonify(unique_movies)
