@@ -107,6 +107,10 @@ def start():
 # main
 @app.route("/main")
 def main():
+    session_id = session.get("session_id")
+    if not session_id:
+        return redirect("/start")  # Redirect if no session
+
     # Get a random actor if none has been set
     current_actor = session.get("current_actor") or get_random_actor()
     session["current_actor"] = current_actor
