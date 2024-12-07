@@ -49,6 +49,13 @@ def index():
 
 @app.route("/start", methods=["GET", "POST"])
 def start():
+    session_id = session.get("session_id")
+    if session_id:
+        db.execute("DELETE FROM sessions WHERE session_id = ?", session_id)
+        db.execute("DELETE FROM actors WHERE session_id = ?", session_id)
+        db.execute("DELETE FROM movies WHERE session_id = ?", session_id)
+        session.clear()
+
     if request.method == "POST":
         # Generate a unique session ID
         session_id = str(uuid.uuid4())
