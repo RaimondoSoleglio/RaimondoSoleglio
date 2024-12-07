@@ -1,7 +1,7 @@
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session, jsonify
 from flask_session import Session
-import requests, random, json
+import requests, random, json, uuid
 
 # Configure application
 app = Flask(__name__)
@@ -50,6 +50,10 @@ def index():
 @app.route("/start", methods=["GET", "POST"])
 def start():
     if request.method == "POST":
+        # Generate a unique session ID
+        session_id = str(uuid.uuid4())
+        session["session_id"] = session_id
+
         print("Form submitted")  # Debug statement
         # Get number of players
         num_players = int(request.form.get("num_players", 0))
