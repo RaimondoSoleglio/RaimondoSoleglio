@@ -17,6 +17,21 @@ TMDB_API_KEY = "b0ae1057e51208e1713059117208de90"
 # Temporary in-memory database
 db = SQL("sqlite:///game_database.db")
 
+# To pick a random actor at start
+def get_random_actor():
+
+    first_actor = db.execute("SELECT name, id FROM starting_actors")
+
+    # Randomly pick an actor from the filtered list
+    selected_actor = random.choice(first_actor)
+
+    print (selected_actor)
+
+    # Add actor to the temporary database
+    db.execute("INSERT INTO actors (name, actor_id) VALUES (?, ?)", selected_actor["name"], selected_actor["id"])
+
+    return selected_actor["name"]
+
 # Copied form CS50 pset - does this work?
 @app.after_request
 def after_request(response):
@@ -74,22 +89,6 @@ def start():
 
 
     return render_template("start.html")
-
-
-# To pick a random actor at start
-def get_random_actor():
-
-    first_actor = db.execute("SELECT name, id FROM starting_actors")
-
-    # Randomly pick an actor from the filtered list
-    selected_actor = random.choice(first_actor)
-
-    print (selected_actor)
-
-    # Add actor to the temporary database
-    db.execute("INSERT INTO actors (name, actor_id) VALUES (?, ?)", selected_actor["name"], selected_actor["id"])
-
-    return selected_actor["name"]
 
 # index
 @app.route("/")
