@@ -53,9 +53,10 @@ def index():
 def start():
     session_id = session.get("session_id")
     if session_id:
-        db.execute("DELETE FROM sessions WHERE session_id = ?", session_id)
         db.execute("DELETE FROM actors WHERE session_id = ?", session_id)
         db.execute("DELETE FROM movies WHERE session_id = ?", session_id)
+        db.execute("DELETE FROM sessions WHERE session_id = ?", session_id)
+
         session.clear()
 
     if request.method == "POST":
@@ -252,9 +253,10 @@ def guess():
 def end_session():
     session_id = session.get("session_id")
     if session_id:
-        db.execute("DELETE FROM sessions WHERE session_id = ?", session_id)
         db.execute("DELETE FROM actors WHERE session_id = ?", session_id)
         db.execute("DELETE FROM movies WHERE session_id = ?", session_id)
+        db.execute("DELETE FROM sessions WHERE session_id = ?", session_id)
+
         session.clear()
     return redirect("/")
 
