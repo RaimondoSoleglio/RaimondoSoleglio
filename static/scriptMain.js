@@ -62,6 +62,18 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     }
 
+    // Function for timer
+    function updateTimer() {
+        if (remainingTime > 0) {
+            remainingTime--;
+            timerElement.textContent = `${remainingTime}s`;
+        } else {
+            clearInterval(timerInterval);
+            // Timer ends
+            alert("Time's up!")
+        }
+    }
+
     // Highlight the currently selected suggestion
     function highlightSuggestion(suggestions, index) {
         suggestions.forEach((item, i) => {
