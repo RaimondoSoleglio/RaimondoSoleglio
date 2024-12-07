@@ -54,7 +54,6 @@ def start():
         session_id = str(uuid.uuid4())
         session["session_id"] = session_id
 
-        print("Form submitted")  # Debug statement
         # Get number of players
         num_players = int(request.form.get("num_players", 0))
         if num_players < 1 or num_players > 4:
@@ -62,9 +61,7 @@ def start():
             return redirect("/start")
 
         # Get player names
-        print(request.form.get("player_names"))
         player_names = json.loads(request.form.get("player_names"))
-        print(player_names)
         if len(player_names) != num_players:
             flash("Please enter names for all players.")
             return redirect("/start")
