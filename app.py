@@ -258,6 +258,7 @@ def end_session():
     if session_id:
         db.execute("DELETE FROM actors WHERE session_id = ?", session_id)
         db.execute("DELETE FROM movies WHERE session_id = ?", session_id)
+        db.execute("DELETE FROM players WHERE session_id = ?", session_id)
         db.execute("DELETE FROM sessions WHERE session_id = ?", session_id)
 
         session.clear()
