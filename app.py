@@ -26,7 +26,7 @@ def get_random_actor():
     selected_actor = random.choice(first_actor)
 
     # Retrieve session_id
-    session_id = session("session_id")
+    session_id = session.get("session_id")
 
     # Add actor to the temporary database
     db.execute("INSERT INTO actors (name, actor_id, session_id) VALUES (?, ?, ?)", selected_actor["name"], selected_actor["id"], session_id)
@@ -117,7 +117,7 @@ def main():
 # query route
 @app.route("/query", methods=["GET"])
 def query():
-    session_id = session("session_id")
+    session_id = session.get("session_id")
     query = request.args.get('q')
     if not query:
         return jsonify([])
@@ -163,7 +163,7 @@ def query():
 
 @app.route("/guess", methods=["POST"])
 def guess():
-    session_id = session("session_id")
+    session_id = session.get("session_id")
 
     selected_movie = request.form.get("movie_query")
     movie_id = request.form.get("movie_id")  # Movie ID (e.g., 123)
