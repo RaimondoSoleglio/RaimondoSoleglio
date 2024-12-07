@@ -208,24 +208,15 @@ def guess():
 
         # If no new actor is found (very unlikely), return an error or message
         if not new_actor:
-            return redirect("/wrong")
+            new_actor = get_random_actor()
 
         # Add the new actor to the temporary actors table in the database
-        db.execute("INSERT INTO actors (name, actor_id) VALUES (?, ?)", new_actor, actor["id"])
+        db.execute("INSERT INTO actors (name, actor_id, session_id) VALUES (?, ?, ?)", new_actor, actor["id"], session_id)
 
         # Update the session with the new actor
         session["current_actor"] = new_actor
         return redirect("/main")
-    '''
-    if any(actor["name"] == current_actor for actor in cast_data):
-        # Add movie to the session database
-        db.execute("INSERT INTO movies (title) VALUES (?)", selected_movie)
 
-        # Pick another main actor from the movie’s cast
-        new_actor = random.choice([actor["name"] for actor in cast_data[:5] if actor["name"] != current_actor])
-        session["current_actor"] = new_actor
-        return redirect("/")
-    '''
     return redirect("/wrong")
 
 @app.route("/wrong")
