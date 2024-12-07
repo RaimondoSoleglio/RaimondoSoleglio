@@ -102,9 +102,12 @@ def start():
         session["lives"] = lives  # Initialize lives for each player
 
         # Metadata in database
-        db.execute("INSERT INTO sessions (session_id, num_players, timer, player_names, lives) VALUES (?, ?, ?, ?, ?)",
-                   session_id, num_players, timer, json.dumps(player_names), json.dumps(lives))
+        db.execute("INSERT INTO sessions (session_id, num_players, timer) VALUES (?, ?, ?)",
+                   session_id, num_players, timer)
 
+        # Insert players into database
+        for name in player_names:
+            db.execute("INSERT INTO players (session_id, name, lives) VALUES (?, ?, ?)", session_id, name, 3)
 
         # Reset session database
         session.pop("current_actor", None)
