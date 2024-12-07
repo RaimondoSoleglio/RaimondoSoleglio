@@ -163,6 +163,8 @@ def query():
 
 @app.route("/guess", methods=["POST"])
 def guess():
+    session_id = session("session_id")
+
     selected_movie = request.form.get("movie_query")
     movie_id = request.form.get("movie_id")  # Movie ID (e.g., 123)
     current_actor = session.get("current_actor")
@@ -181,10 +183,10 @@ def guess():
     # Check if current_actor is in the movie cast
     if any(actor["name"] == current_actor for actor in cast_data):
         # Add movie to the session database
-        db.execute("INSERT INTO movies (title, movie_id) VALUES (?, ?)", selected_movie, movie_id)
+        db.execute("INSERT INTO movies (title, movie_id, session_id) VALUES (?, ?, ?)", selected_movie, movie_id, session_id)
 
         # Find the list of already picked actors in the temp actors table
-        used_actors = {actor["name"] for actor in db.execute("SELECT name FROM actors")}
+        used_actors = {actor["name"] for actor in db.execute("SELECT name FROM actors WHERE session_id = ?", session_id)}
 
         # Shuffle the list of top 5 main cast members so to randomise the choice
         top_cast = cast_data[:5]
