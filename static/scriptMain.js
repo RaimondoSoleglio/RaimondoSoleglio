@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputField = document.getElementById("search"); // The input field
     const suggestionBox = document.getElementById("results"); // The suggestion box
     const hiddenField = document.getElementById("selected_movie_id"); // Hidden input for movie ID
+    const timerElement = document.getElementById("timer");
+    let remainingTime = parseInt(timerElement.dataset.timer);
     let currentIndex = -1; // To track highlighted suggestion
 
     // Fetch results on input
