@@ -19,14 +19,13 @@ db = SQL("sqlite:///game_database.db")
 
 # To pick a random actor at start
 def get_random_actor():
+    # Retrieve session_id
+    session_id = session.get("session_id")
 
-    first_actor = db.execute("SELECT name, id FROM starting_actors")
+    first_actor = db.execute("SELECT name, id FROM starting_actors WHERE id NOT IN (SELECT actor_id FROM actors WHERE session_id = ?)", session_id)
 
     # Randomly pick an actor from the filtered list
     selected_actor = random.choice(first_actor)
-
-    # Retrieve session_id
-    session_id = session.get("session_id")
 
     # Add actor to the temporary database
     db.execute("INSERT INTO actors (name, actor_id, session_id) VALUES (?, ?, ?)", selected_actor["name"], selected_actor["id"], session_id)
@@ -120,7 +119,7 @@ def query():
     session_id = session.get("session_id")
     if not session_id:
         return redirect("/start")  # Redirect if no session is active
-    
+
     query = request.args.get('q')
     if not query:
         return jsonify([])
