@@ -95,10 +95,7 @@ def start():
         db.execute("DELETE FROM actors WHERE session_id = ?", session_id)
         db.execute("DELETE FROM movies WHERE session_id = ?", session_id)
 
-        print("Redirecting to /main")  # Debug statement
-
         return redirect("/main")
-
 
     return render_template("start.html")
 
