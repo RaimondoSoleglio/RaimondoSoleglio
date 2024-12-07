@@ -42,9 +42,9 @@
     <div class="right-section">
         <h3>Players and Stats</h3>
         <ul>
-            <li>Player 1: 3 lives</li>
-            <li>Player 2: 2 lives</li>
-            <!-- Dynamically list all players here -->
+            {% for player in players %}
+                <li>{{ player.name }}: {{ player.lives }} lives</li>
+            {% endfor %}
         </ul>
         <div class="timer">
             <p>Time left: <span id="timer">30s</span></p>
