@@ -41,6 +41,12 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
+# index
+@app.route("/")
+@app.route("/home")
+def index():
+    return render_template("index.html")
+
 @app.route("/start", methods=["GET", "POST"])
 def start():
     if request.method == "POST":
@@ -89,12 +95,6 @@ def start():
 
 
     return render_template("start.html")
-
-# index
-@app.route("/")
-@app.route("/home")
-def index():
-    return render_template("index.html")
 
 # main
 @app.route("/main")
