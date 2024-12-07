@@ -102,6 +102,8 @@ def start():
         session["timer"] = timer
         session["lives"] = lives  # Initialize lives for each player
 
+        print(session)
+
         # Metadata in database
         db.execute("INSERT INTO sessions (session_id, num_players, timer) VALUES (?, ?, ?)",
                    session_id, num_players, timer)
