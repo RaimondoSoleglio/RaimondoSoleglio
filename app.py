@@ -131,7 +131,7 @@ def main():
         return redirect("/start")  # Redirect if no session
 
     # Fetch player data
-    players = db.execute("SELECT name, lives FROM players WHERE session_id = ?", session_id)
+    players = db.execute("SELECT id, name, lives FROM players WHERE session_id = ?", session_id)
     if not players:
         flash("No players found!")
         return redirect("/start")  # Redirect if no players found
