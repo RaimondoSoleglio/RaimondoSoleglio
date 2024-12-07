@@ -25,8 +25,11 @@ def get_random_actor():
     # Randomly pick an actor from the filtered list
     selected_actor = random.choice(first_actor)
 
+    # Retrieve session_id
+    session_id = session("session_id")
+
     # Add actor to the temporary database
-    db.execute("INSERT INTO actors (name, actor_id) VALUES (?, ?)", selected_actor["name"], selected_actor["id"])
+    db.execute("INSERT INTO actors (name, actor_id, session_id) VALUES (?, ?, ?)", selected_actor["name"], selected_actor["id"], session_id)
 
     return selected_actor["name"]
 
