@@ -7,13 +7,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (timerCounter <= 1) {
             clearInterval(interval);
             // go to EndOfTurn route?
+            fetch('/end_turn', { method: 'POST' })
+            .then(() => location.reload());
         }
 
         timerCounter = timerCounter - 1;
         timerElement.innerText = timerCounter + "s";
     }, 1000);
-
-    fetch('/end_turn', { method: 'POST' })
-        .then(() => location.reload());
 });
 
