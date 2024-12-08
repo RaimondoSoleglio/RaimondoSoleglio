@@ -305,7 +305,7 @@ def end_session_solo():
         flash("No players found!")
         return redirect("/start")  # Redirect if no players found
 
-    if session("num_players") == 1 and player for player in players if player["lives"] != 0:
+    if session("num_players") == 1 and player["lives"] for player in players != 0:
         flash("Trying to cheat?")
         return redirect("/start")
 
