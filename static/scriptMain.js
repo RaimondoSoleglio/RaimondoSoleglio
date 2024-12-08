@@ -2,8 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputField = document.getElementById("search"); // The input field
     const suggestionBox = document.getElementById("results"); // The suggestion box
     const hiddenField = document.getElementById("selected_movie_id"); // Hidden input for movie ID
-    const timerElement = document.getElementById("timer");
-    let remainingTime = parseInt(timerElement.dataset.timer);
     let currentIndex = -1; // To track highlighted suggestion
 
     // Fetch results on input
@@ -62,17 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     }
 
-    // Function for timer
-    function updateTimer() {
-        if (remainingTime > 0) {
-            remainingTime--;
-            timerElement.textContent = `${remainingTime}s`;
-        } else {
-            clearInterval(timerInterval);
-            // Timer ends
-            alert("Time's up!")
-        }
-    }
 
     // Highlight the currently selected suggestion
     function highlightSuggestion(suggestions, index) {
