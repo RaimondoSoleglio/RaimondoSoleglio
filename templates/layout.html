@@ -18,6 +18,12 @@
 
         <title>Guess the movie{% block title %}{% endblock %}</title>
 
+        <script>
+            setTimeout(function() {
+                window.location.href = "{{ url_for('next_route') }}";
+            }, 3000); // 3000 milliseconds = 3 seconds
+        </script>
+
         {% block java %}{% endblock %}
 
     </head>
