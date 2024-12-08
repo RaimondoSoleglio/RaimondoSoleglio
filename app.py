@@ -165,7 +165,7 @@ def main():
         return redirect("/end")
 
     # --- Multiplayer:
-    if len(active_players) == 1:
+    if len(players) > 1 and len(active_players) == 1:
         flash(f"Game Over! {active_players[0]['name']} is the winner!")
         return redirect("/end")
 
