@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Guess the movie - About
+{% endblock %}
+
+{% block main %}
+With {session.get('timer')} seconds, you guessed {guesses} movies correctly!")
+{% endblock %}

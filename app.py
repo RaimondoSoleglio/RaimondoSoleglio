@@ -327,11 +327,11 @@ def end_session_gameover():
         flash("Trying to cheat?")
         return redirect("/start")
 
-    if session("num_players") =! 1:
+    if session("num_players") =! 1 and player["lives"] for player in players != 0:
         flash("How did you get here?")
         return redirect("/start")
 
-    return render_template("endSolo")
+    return render_template("gameover")
 
 @app.route("/end_turn", methods=["POST"])
 def end_turn():
