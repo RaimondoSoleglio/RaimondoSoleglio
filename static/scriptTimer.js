@@ -12,5 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
         timerCounter = timerCounter - 1;
         timerElement.innerText = timerCounter + "s";
     }, 1000);
+
+    fetch('/end_turn', { method: 'POST' })
+        .then(() => location.reload());
 });
 

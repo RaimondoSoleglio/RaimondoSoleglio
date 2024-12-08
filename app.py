@@ -286,4 +286,12 @@ def end_session():
         session.clear()
     return redirect("/")
 
+@app.route("/end_turn", methods=["POST"])
+def end_turn():
+    session_id = session.get("session_id")
+    player_id = session.get("current_player_id")
+    db.execute("UPDATE players SET lives = lives - 1 WHERE id = ?", player_id)
+    flash("Time over! You lost a life.")
+    return "", 200
+
 
