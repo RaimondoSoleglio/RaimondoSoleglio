@@ -159,7 +159,10 @@ def main():
     session["current_actor"] = current_actor
 
     # --- also: if the player has no lives left:
-    if len(active_players) == 1 and active_players[0]["lives"] <= 0:
+    if len(players) > 1 and player["lives"] <= 0:
+        flash(f"Sorry {player['name']}, your adventure ends here!")
+
+    if len(players) == 1 and len(active_players) == 1 and active_players[0]["lives"] <= 0:
         correct_guesses = db.execute("SELECT COUNT(*) FROM movies WHERE session_id = ?", session_id)[0]["COUNT(*)"]
         flash(f"With {session.get('timer')} seconds, you guessed {correct_guesses} movies correctly!")
         return redirect("/end")
