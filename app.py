@@ -103,7 +103,7 @@ def start():
         session["timer"] = timer
         session["lives"] = lives  # Initialize lives for each player
 
-        print(session)
+        print(session) # Debug
 
         # Metadata in database
         db.execute("INSERT INTO sessions (session_id, num_players, timer) VALUES (?, ?, ?)",
@@ -135,6 +135,8 @@ def main():
     if not players:
         flash("No players found!")
         return redirect("/start")  # Redirect if no players found
+
+    print(players) # Debug
 
     # BIG CHANGES FROM HERE ---
 
