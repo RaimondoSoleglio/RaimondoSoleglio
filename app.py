@@ -146,6 +146,8 @@ def main():
         flash("Game Over! No players left.")
         return redirect("/end")
 
+    print(active_players)
+
     # Cycle through players
     current_player_index = session.get("current_player_index", 0) % len(active_players)
     current_player = active_players[current_player_index]
@@ -159,6 +161,9 @@ def main():
     # Get a random actor if none has been set
     current_actor = session.get("current_actor") or get_random_actor()
     session["current_actor"] = current_actor
+
+    print(current_actor)
+    print(session)
 
     # --- also: if the player has no lives left:
     for player in players:
