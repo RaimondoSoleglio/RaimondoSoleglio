@@ -172,13 +172,12 @@ def main():
 
     if len(players) == 1 and len(active_players) == 1 and active_players[0]["lives"] <= 0:
         correct_guesses = db.execute("SELECT COUNT(*) FROM movies WHERE session_id = ?", session_id)[0]["COUNT(*)"]
-        flash(f"With {session.get('timer')} seconds, you guessed {correct_guesses} movies correctly!")
-        return redirect("/endSolo")
+        return redirect("/endSolo", guesses=correct_guesses)
 
     # --- Multiplayer:
     if len(players) > 1 and len(active_players) == 1:
         flash(f"Game Over! {active_players[0]['name']} is the winner!")
-        return redirect("/end")
+        return redirect("/gameover")
 
     return render_template("main.html", actor=current_actor, players=players, timer=session.get("timer"))
 
@@ -298,6 +297,25 @@ def guess():
 
 @app.route("/endSolo")
 def end_session_solo():
+    session_id = session.get("session_id")
+
+    players = db.execute("SELECT id, name, lives FROM players WHERE session_id = ?", session_id)
+    if not players:
+        flash("No players found!")
+        return redirect("/start")  # Redirect if no players found
+
+    if session("num_players") == 1 and player["lives"] for player in players != 0:
+        flash("Trying to cheat?")
+        return redirect("/start")
+
+    if session("num_players") =! 1:
+        flash("How did you get here?")
+        return redirect("/start")
+
+    return render_template("endSolo")
+
+@app.route("/gameover")
+def end_session_gameover():
     session_id = session.get("session_id")
 
     players = db.execute("SELECT id, name, lives FROM players WHERE session_id = ?", session_id)
