@@ -137,7 +137,7 @@ def main():
         return redirect("/start")  # Redirect if no players found
 
     # BIG CHANGES FROM HERE ---
-    
+
     # Filter active players
     active_players = [player for player in players if player["lives"] > 0]
     if not active_players:
@@ -238,6 +238,7 @@ def guess():
 
         # Find the list of already picked actors in the temp actors table
         used_actors = {actor["name"] for actor in db.execute("SELECT name FROM actors WHERE session_id = ?", session_id)}
+        flash("Correct! Next player's turn.")
 
         # Shuffle the list of top 5 main cast members so to randomise the choice
         top_cast = cast_data[:5]
