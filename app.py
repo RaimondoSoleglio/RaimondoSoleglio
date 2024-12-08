@@ -307,7 +307,7 @@ def end_session_solo():
         flash("Trying to cheat?")
         return redirect("/start")
 
-    if session("num_players") =! 1:
+    if session("num_players") != 1:
         flash("How did you get here?")
         return redirect("/start")
 
@@ -324,10 +324,6 @@ def end_session_gameover():
 
     if session("num_players") == 1:
         flash("Trying to cheat?")
-        return redirect("/start")
-
-    if session("num_players") =! 1 
-        flash("How did you get here?")
         return redirect("/start")
 
     return render_template("gameover")
