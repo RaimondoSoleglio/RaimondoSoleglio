@@ -269,7 +269,10 @@ def guess():
         session["current_actor"] = new_actor
         return redirect("/main")
 
-    return redirect("/wrong")
+    else:
+        db.execute("UPDATE players SET lives = lives - 1 WHERE id = ?", session["current_player_id"])
+        flash("Nope, sorry! You lost a life.")
+        return redirect("/main")
 
 @app.route("/end")
 def end_session():
@@ -283,6 +286,4 @@ def end_session():
         session.clear()
     return redirect("/")
 
-@app.route("/wrong")
-def wrong():
-    abort(400, "Wrong answer, try again!")
+
