@@ -12,15 +12,8 @@
 {% block main %}
 <!-- Main content area -->
 <div class="main-content">
-    
+
     <!-- Flash messages and 3,2,1 countdown -->
-    <div id="flash-message">
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                <div class="alert alert-info">{{ messages[0] }}</div>
-            {% endif %}
-        {% endwith %}
-    </div>
     <div id="countdown" style="display: none;">3...</div>
     <script>
         const flashMessage = document.getElementById("flash-message");
