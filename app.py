@@ -299,11 +299,17 @@ def guess():
 @app.route("/endSolo")
 def end_session_solo():
     session_id = session.get("session_id")
-    if session("num_players") <= 0:
-        flash("There are no players! Start a new game.")
+
+    players = db.execute("SELECT id, name, lives FROM players WHERE session_id = ?", session_id)
+    if not players:
+        flash("No players found!")
+        return redirect("/start")  # Redirect if no players found
+
+    if session("num_players") == 1 and player for player in players if player["lives"] != 0:
+        flash("Trying to cheat?")
         return redirect("/start")
 
-    if session("num_players") == 1 and 
+    if session("num_players") == 1 and
 
     return render_template("endSolo")
 
