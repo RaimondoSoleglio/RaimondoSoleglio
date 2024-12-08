@@ -158,6 +158,12 @@ def main():
     current_actor = session.get("current_actor") or get_random_actor()
     session["current_actor"] = current_actor
 
+    # --- also: if the player has no lives left:
+    if len(active_players) == 1 and active_players[0]["lives"] <= 0:
+        correct_guesses = db.execute("SELECT COUNT(*) FROM movies WHERE session_id = ?", session_id)[0]["COUNT(*)"]
+        flash(f"With {session.get('timer')} seconds, you guessed {correct_guesses} movies correctly!")
+        return redirect("/end")
+
     return render_template("main.html", actor=current_actor, players=players, timer=session.get("timer"))
 
 # query route
