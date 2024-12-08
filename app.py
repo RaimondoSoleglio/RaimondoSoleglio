@@ -164,6 +164,11 @@ def main():
         flash(f"With {session.get('timer')} seconds, you guessed {correct_guesses} movies correctly!")
         return redirect("/end")
 
+    # --- Multiplayer:
+    if len(active_players) == 1:
+        flash(f"Game Over! {active_players[0]['name']} is the winner!")
+        return redirect("/end")
+
     return render_template("main.html", actor=current_actor, players=players, timer=session.get("timer"))
 
 # query route
