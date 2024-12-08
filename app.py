@@ -176,7 +176,6 @@ def main():
 
     # --- Multiplayer:
     if len(players) > 1 and len(active_players) == 1:
-        flash(f"Game Over! {active_players[0]['name']} is the winner!")
         return redirect("/gameover")
 
     return render_template("main.html", actor=current_actor, players=players, timer=session.get("timer"))
