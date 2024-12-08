@@ -299,14 +299,9 @@ def guess():
 @app.route("/endSolo")
 def end_session_solo():
     session_id = session.get("session_id")
-    if session_id:
-        db.execute("DELETE FROM actors WHERE session_id = ?", session_id)
-        db.execute("DELETE FROM movies WHERE session_id = ?", session_id)
-        db.execute("DELETE FROM players WHERE session_id = ?", session_id)
-        db.execute("DELETE FROM sessions WHERE session_id = ?", session_id)
+    
 
-        session.clear()
-    return redirect("/")
+    return render_template("endSolo")
 
 @app.route("/end_turn", methods=["POST"])
 def end_turn():
