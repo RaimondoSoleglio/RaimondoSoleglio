@@ -136,6 +136,23 @@ def main():
         flash("No players found!")
         return redirect("/start")  # Redirect if no players found
 
+    # BIG CHANGES FROM HERE ---
+    
+    # Filter active players
+    active_players = [player for player in players if player["lives"] > 0]
+    if not active_players:
+        flash("Game Over! No players left.")
+        return redirect("/end")
+
+    # Cycle through players
+    current_player_index = session.get("current_player_index", 0) % len(active_players)
+    current_player = active_players[current_player_index]
+
+    session["current_player_index"] = (current_player_index + 1) % len(active_players)
+    flash(f"{current_player['name']} ready?")
+    session["current_player_id"] = current_player["id"]
+
+    # --- TO HERE
 
     # Get a random actor if none has been set
     current_actor = session.get("current_actor") or get_random_actor()
