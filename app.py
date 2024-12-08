@@ -173,7 +173,7 @@ def main():
     if len(players) == 1 and len(active_players) == 1 and active_players[0]["lives"] <= 0:
         correct_guesses = db.execute("SELECT COUNT(*) FROM movies WHERE session_id = ?", session_id)[0]["COUNT(*)"]
         flash(f"With {session.get('timer')} seconds, you guessed {correct_guesses} movies correctly!")
-        return redirect("/end")
+        return redirect("/endSolo")
 
     # --- Multiplayer:
     if len(players) > 1 and len(active_players) == 1:
@@ -296,8 +296,8 @@ def guess():
         flash("Nope, sorry! You lost a life.")
         return redirect("/main")
 
-@app.route("/end")
-def end_session():
+@app.route("/endSolo")
+def end_session_solo():
     session_id = session.get("session_id")
     if session_id:
         db.execute("DELETE FROM actors WHERE session_id = ?", session_id)
