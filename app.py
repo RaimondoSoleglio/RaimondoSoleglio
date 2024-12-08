@@ -299,7 +299,11 @@ def guess():
 @app.route("/endSolo")
 def end_session_solo():
     session_id = session.get("session_id")
-    
+    if session("num_players") <= 0:
+        flash("There are no players! Start a new game.")
+        return redirect("/start")
+
+    if session("num_players") == 1 and 
 
     return render_template("endSolo")
 
