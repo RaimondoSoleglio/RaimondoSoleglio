@@ -12,6 +12,35 @@
 {% block main %}
 <!-- Main content area -->
 <div class="main-content">
+    
+    <!-- Flash messages and 3,2,1 countdown -->
+    <div id="flash-message">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert alert-info">{{ messages[0] }}</div>
+            {% endif %}
+        {% endwith %}
+    </div>
+    <div id="countdown" style="display: none;">3...</div>
+    <script>
+        const flashMessage = document.getElementById("flash-message");
+        const countdown = document.getElementById("countdown");
+        if (flashMessage) {
+            setTimeout(() => {
+                flashMessage.style.display = "none";
+                countdown.style.display = "block";
+                let count = 3;
+                const interval = setInterval(() => {
+                    countdown.textContent = `${count--}...`;
+                    if (count < 0) {
+                        clearInterval(interval);
+                        countdown.style.display = "none";
+                    }
+                }, 1000);
+            }, 2000);
+        }
+    </script>
+
     <!-- Left content section (2 blocks stacked vertically) -->
     <div class="left-section">
         <!-- Player Info block (top left) -->
