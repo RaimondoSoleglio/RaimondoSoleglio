@@ -304,11 +304,9 @@ def end_session_solo():
         return redirect("/start")  # Redirect if no players found
 
     if session["num_players"] == 1 and players[0]["lives"] != 0:
-        flash("Trying to cheat?")
         return redirect("/start")
 
     if session["num_players"] != 1:
-        flash("How did you get here?")
         return redirect("/start")
 
     return render_template("endSolo.html")
@@ -323,7 +321,6 @@ def end_session_gameover():
         return redirect("/start")  # Redirect if no players found
 
     if session["num_players"] == 1:
-        flash("Trying to cheat?")
         return redirect("/start")
 
     if session["num_players"] > 1:
@@ -331,7 +328,6 @@ def end_session_gameover():
         print(alive_players)
         print(len(alive_players))
         if len(alive_players) > 1:
-            flash("Trying to cheat?")
             return redirect("/start")
 
     return render_template("gameover.html")
