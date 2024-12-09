@@ -311,7 +311,7 @@ def end_session_solo():
         flash("How did you get here?")
         return redirect("/start")
 
-    return render_template("endSolo")
+    return render_template("endSolo.html")
 
 @app.route("/gameover")
 def end_session_gameover():
@@ -326,7 +326,7 @@ def end_session_gameover():
         flash("Trying to cheat?")
         return redirect("/start")
 
-    return render_template("gameover")
+    return render_template("gameover.html")
 
 @app.route("/end_turn", methods=["POST"])
 def end_turn():
