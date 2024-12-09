@@ -327,9 +327,10 @@ def end_session_gameover():
         return redirect("/start")
 
     if session["num_players"] > 1:
-        alive_players = [player for player in players if player["lives ]]
-        flash("Trying to cheat?")
-        return redirect("/start")
+        alive_players = [player for player in players if player["lives"] > 0]
+        if len(alive_players) > 1:
+            flash("Trying to cheat?")
+            return redirect("/start")
 
     return render_template("gameover.html")
 
