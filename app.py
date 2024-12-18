@@ -330,7 +330,7 @@ def end_session_gameover():
         if len(alive_players) > 1:
             return redirect("/start")
 
-    return render_template("gameover.html")
+    return render_template("gameover.html", active_players=active_players)
 
 @app.route("/end_turn", methods=["POST"])
 def end_turn():
