@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const lightbox = document.getElementById("lightbox");
     const lightboxMessage = document.getElementById("lightbox-message");
     const countdownElement = document.getElementById("countdown");
+    const currentPlayer = "{{ current_player }}"; // Injected from the backend
 
     let timerCounter = parseInt(timerElement.dataset.timer, 10);
     let interval;
@@ -15,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
         interval = setInterval(() => {
             if (timerCounter <= 1) {
                 clearInterval(interval);
-                showLightbox("Time over! You lost a life. Ready?");
+                showLightbox(`Time over! You lost a life. ${currentPlayer}, ready?`);
                 return;
             }
 
@@ -52,5 +53,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Initial lightbox for player readiness
-    showLightbox("Bob ready?");
+    showLightbox(`${currentPlayer}, ready?`);
 });
