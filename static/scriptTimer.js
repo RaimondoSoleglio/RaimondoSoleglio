@@ -3,25 +3,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const lightbox = document.getElementById("lightbox");
     const lightboxMessage = document.getElementById("lightbox-message");
     const countdownElement = document.getElementById("countdown");
-    const currentPlayer = "{{ current_player }}"; // Injected from the backend
 
     let timerCounter = parseInt(timerElement.dataset.timer, 10);
     let interval;
     let isPaused = true;
+    let timerHandled = false; // Flag to prevent re-triggering actions
+
 
     // Function to start the timer
     function startTimer() {
-        isPaused = false;
+        clearInterval(interval); // Clear any existing timer
+        isPaused = false; // Reset the pause state
 
         interval = setInterval(() => {
-            if (timerCounter <= 1) {
+            if (timerCounter <= 0) {
+                timerElement.innerText = "0s"; // Ensure it displays "0s" before any processing
                 clearInterval(interval);
-                showLightbox(`Time over! You lost a life. ${currentPlayer}, ready?`);
-                return;
+                window.location.href = '/loseLife';
             }
 
             timerCounter--;
-            timerElement.innerText = timerCounter + "s";
+            timerElement.innerText = `${timerCounter}s`;
         }, 1000);
     }
 
@@ -33,13 +35,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Function to show the lightbox with countdown
     function showLightbox(message) {
-        pauseTimer();
+        pauseTimer(); // Pause the timer when showing the lightbox
         lightboxMessage.textContent = message;
-        countdownElement.textContent = ""; // Reset the countdown text
+        countdownElement.textContent = ""; // Reset countdown text
         lightbox.style.display = "flex";
+
+        // Hide actor name
+        const actorContainer = document.getElementById("actor-container");
+        actorContainer.classList.remove("visible");
+        actorContainer.classList.add("hidden");
 
         // Start the 3-2-1 countdown
         let count = 3;
+        countdownElement.textContent = count; // Display "3" immediately
         const countdownInterval = setInterval(() => {
             countdownElement.textContent = count;
             count--;
@@ -47,11 +55,26 @@ document.addEventListener("DOMContentLoaded", () => {
             if (count < 0) {
                 clearInterval(countdownInterval);
                 lightbox.style.display = "none"; // Hide the lightbox
+
+                // Show actor name
+                actorContainer.classList.remove("hidden");
+                actorContainer.classList.add("visible");
+
+                // Auto-focus the input field
+                const inputField = document.getElementById("search");
+                inputField.disabled = false; // Ensure the field is enabled
+                inputField.focus(); // Focus the input field
+
                 startTimer(); // Resume the game timer
             }
         }, 1000);
     }
 
-    // Initial lightbox for player readiness
-    showLightbox(`${currentPlayer}, ready?`);
+    // Show the lightbox if there's an initial message
+    const message = window.gameData?.message || null; // Fetch dynamic message
+    if (message) {
+        showLightbox(message); // Trigger the lightbox display
+    }
 });
+
+

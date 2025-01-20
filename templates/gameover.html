@@ -1,9 +1,12 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Guess the movie - About
+    Game Over
 {% endblock %}
 
 {% block main %}
-Game Over! {{ active_players[0]['name'] }} is the winner!
+<div class="text-center">
+    <h1>{{ message }}</h1>
+    <a href="/start" class="btn btn-primary">Start a New Game</a>
+</div>
 {% endblock %}

@@ -171,7 +171,7 @@ option, #player-names-section input#player_name,
     text-align: center;
 }
 
-.game-info {
+#actor-container {
     position: relative; /* Makes the absolute positioning of #results relative to this */
     background-color: #f9f9f9;
     padding: 1rem;
@@ -208,3 +208,81 @@ ul li {
     }
 }
 
+/* Lightbox styles */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it appears above all other elements */
+}
+
+.lightbox-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+    z-index: 1;
+}
+
+.lightbox-content {
+    position: relative;
+    z-index: 2; /* Ensure content is above the overlay */
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 500px;
+    width: 80%;
+    animation: fadeIn 0.3s ease-out; /* Optional: Add a fade-in effect */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.wrong-answer-flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 0, 0, 0.8); /* Red with slight transparency */
+    z-index: 10000; /* Ensure it’s above everything */
+    animation: fadeOut 1s ease-out forwards; /* Flash effect */
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* To hide the actor bar */
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-out; /* Smooth fade-in effect */
+}
+
+.visible {
+    visibility: visible;
+    opacity: 1;
+}

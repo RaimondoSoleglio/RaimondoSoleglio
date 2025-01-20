@@ -15,7 +15,6 @@
 
         <link href="/static/styles.css" rel="stylesheet">
 
-
         <title>Guess the movie{% block title %}{% endblock %}</title>
 
         {% block java %}{% endblock %}
@@ -47,6 +46,76 @@
         {% endif %}
 
         <main> <!-- class="container py-5 text-center" -->
+        <div id="wrong-answer-flash" class="wrong-answer-flash" style="display: none;">
+        </div>
+
+        <div id="lightbox" class="lightbox" style="display: none;">
+            <div class="lightbox-overlay"></div>
+            <div class="lightbox-content">
+                <p id="lightbox-message"></p>
+                <p id="countdown" style="font-size: 2rem; font-weight: bold;"></p>
+            </div>
+        </div>
+
+        <script>
+
+            const answerFlag = "{{ answer_flag }}"; // Inject the flag from the backend
+            if (answerFlag === "wrong") {
+                showWrongAnswerFlash(() => {
+                });
+            }
+
+            function showWrongAnswerFlash(callback) {
+                const flash = document.getElementById("wrong-answer-flash");
+                flash.style.display = "block"; // Show the flash
+                setTimeout(() => {
+                    flash.style.display = "none"; // Hide after 1 second
+                    if (callback) callback(); // Optional callback after the flash
+                }, 1000);
+            }
+
+            window.gameData = {
+                message: "{{ message | safe }}",
+                currentPlayer: "{{ current_player }}"
+            };
+
+            if (message) {
+                showLightbox(message); // Trigger the lightbox display
+            }
+
+
+            document.addEventListener("DOMContentLoaded", () => {
+                const lightbox = document.getElementById("lightbox");
+                const lightboxMessage = document.getElementById("lightbox-message");
+                const countdownElement = document.getElementById("countdown");
+
+                function showLightbox(message) {
+                    lightboxMessage.textContent = message;
+                    countdownElement.textContent = ""; // Reset countdown text
+                    lightbox.style.display = "flex";
+
+                    // Start the 3-2-1 countdown
+                    let count = 3;
+                    const countdownInterval = setInterval(() => {
+                        countdownElement.textContent = count;
+                        count--;
+
+                        if (count < 0) {
+                            clearInterval(countdownInterval);
+                            lightbox.style.display = "none"; // Hide the lightbox
+                            startTimer(); // Resume the game timer
+                        }
+                    }, 1000);
+                }
+
+                // Fetch dynamic message from Flask
+                const message = "{{ message | safe }}";
+                if (message) {
+                    showLightbox(message);
+                }
+            });
+        </script>
+
             {% block main %}{% endblock %}
         </main>
 

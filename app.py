@@ -17,6 +17,16 @@ TMDB_API_KEY = "b0ae1057e51208e1713059117208de90"
 # Temporary in-memory database
 db = SQL("sqlite:///game_database.db")
 
+# Helper function for active_players
+def get_active_players(session_id):
+    players = db.execute("SELECT id, name, lives FROM players WHERE session_id = ?", session_id)
+    return [player for player in players if player["lives"] > 0]
+
+def update_active_players(session_id):
+    active_players = get_active_players(session_id)
+    session['active_players'] = active_players
+    session['round_active'] = len(active_players)
+
 # To pick a random actor at start
 def get_random_actor():
     # Retrieve session_id
@@ -86,6 +96,8 @@ def start():
         for name in player_names:
             if not name.isalnum() or len(name) > 10:
                 flash("Player names must be alphanumeric and up to 10 characters long.")
+            if player_names.count(name) > 1:
+                flash("Player names must be unique.")
                 return redirect("/start")
 
         # Get timer value
@@ -102,8 +114,7 @@ def start():
         session["player_names"] = player_names
         session["timer"] = timer
         session["lives"] = lives  # Initialize lives for each player
-
-        print(session) # Debug
+        session['round_active'] = 0  # Initialise at the start of a new game
 
         # Metadata in database
         db.execute("INSERT INTO sessions (session_id, num_players, timer) VALUES (?, ?, ?)",
@@ -115,10 +126,6 @@ def start():
 
         # Reset session database
         session.pop("current_actor", None)
-        # Clear old data tied to this session_id if any
-        db.execute("DELETE FROM actors WHERE session_id = ?", session_id)
-        db.execute("DELETE FROM movies WHERE session_id = ?", session_id)
-
         return redirect("/main")
 
     return render_template("start.html")
@@ -130,55 +137,72 @@ def main():
     if not session_id:
         return redirect("/start")  # Redirect if no session
 
+    # Reset life deduction marker for the next round
+    session['life_deducted'] = False
+
     # Fetch player data
     players = db.execute("SELECT id, name, lives FROM players WHERE session_id = ?", session_id)
     if not players:
         flash("No players found!")
         return redirect("/start")  # Redirect if no players found
 
-    print(players) # Debug
+    # Initialise or update active_players
+    if 'active_players' not in session or not session['active_players']:
+        update_active_players(session_id)
 
-    # BIG CHANGES FROM HERE ---
-
-    # Filter active players
-    active_players = [player for player in players if player["lives"] > 0]
-    if not active_players:
-        flash("Game Over! No players left.")
-        return redirect("/end")
-
+    active_players = session['active_players']
     print(active_players)
 
-    # Cycle through players
-    current_player_index = session.get("current_player_index", 0) % len(active_players)
+    # Handle single-player game ending
+    if len(players) == 1:
+        if active_players == []:  # Player has no lives left
+            return redirect("/endSolo")
+
+    # Handle multiplayer game ending
+    if len(players) > 1:
+        if session['round_active'] == 0:
+            # Check game-ending conditions after a full round
+            if len(active_players) == 1:
+                winner = active_players[0]['name']
+                return redirect(f"/gameover?winner={winner}")  # Implement gameover route for multiplayer
+
+            elif len(active_players) == 0:
+                return redirect("/gameover")  # No winner case
+
+            elif len(active_players) > 1:
+                update_active_players(session_id)
+                print("reset session number is ", session['round_active'])
+
+        else:
+            print("updated session number is ", session['round_active'])
+            session['round_active'] = session.get('round_active') - 1
+
+    current_player_index = session.get("current_player_index", 0)
+    print("current player index is: ", current_player_index)
     current_player = active_players[current_player_index]
+    print ("current_player is", current_player['name'], " ID: ", current_player['id'], " Lives: ", current_player['lives'])
+    print("session number is ", session['round_active'])
 
-    session["current_player_index"] = (current_player_index + 1) % len(active_players)
-    flash(f"{current_player['name']} ready?")
-    session["current_player_id"] = current_player["id"]
-
-    # --- TO HERE
+    if session['round_active'] == 0:
+        session["current_player_index"] = (current_player_index + 1) % len(active_players)
+        print ("new current player index (with round active 0) is:", session["current_player_index"])
+    if session['round_active'] != 0:
+        session["current_player_index"] = current_player_index + 1
+        session["current_player_id"] = current_player["id"]
+        print ("new current player index (with round active > 0) is:", session["current_player_index"])
 
     # Get a random actor if none has been set
     current_actor = session.get("current_actor") or get_random_actor()
     session["current_actor"] = current_actor
 
-    print(current_actor)
-    print(session)
+    if len(players) == 1:
+        # Increment correct guesses every time a new actor is assigned
+        session["correct_guesses"] = session.get("correct_guesses", 0) + 1
 
-    # --- also: if the player has no lives left:
-    for player in players:
-        if len(players) > 1 and player["lives"] <= 0:
-            flash(f"Sorry {player['name']}, your adventure ends here!")
+    message = f"{current_player['name']}, ready?"
 
-    if len(players) == 1 and len(active_players) == 1 and active_players[0]["lives"] <= 0:
-        correct_guesses = db.execute("SELECT COUNT(*) FROM movies WHERE session_id = ?", session_id)[0]["COUNT(*)"]
-        return redirect("/endSolo", guesses=correct_guesses)
-
-    # --- Multiplayer:
-    if len(players) > 1 and len(active_players) == 1:
-        return redirect("/gameover")
-
-    return render_template("main.html", actor=current_actor, players=players, timer=session.get("timer"))
+    # answer_flag = session.pop('answer', None)  # Use `pop` to reset it after reading
+    return render_template("main.html", actor=current_actor, players=players, message=message, current_player=current_player, timer=session.get("timer"))
 
 # query route
 @app.route("/query", methods=["GET"])
@@ -233,16 +257,28 @@ def query():
 @app.route("/guess", methods=["POST"])
 def guess():
     session_id = session.get("session_id")
+
+    current_player = db.execute("SELECT id, name, lives FROM players WHERE id = ?", session["current_player_id"])[0]
+
+    print("In guess: ", current_player['id'])
     if not session_id:
         return redirect("/start")  # Redirect if no session is active
 
     selected_movie = request.form.get("movie_query")
     movie_id = request.form.get("movie_id")  # Movie ID (e.g., 123)
-    current_actor = session.get("current_actor")
 
-     # Validate the input
-    if not movie_id:
-        return redirect("/wrong")  # Ensure `movie_id` is provided
+     # Validate inputs
+    if not selected_movie or not movie_id:
+        flash("Invalid input. Please select a movie.")
+        return redirect("/main")
+
+    if not movie_id.isdigit():
+        flash("Invalid movie selection.")
+        return redirect("/main")
+
+    movie_id = int(movie_id)  # Safely cast to integer after validation
+
+    current_actor = session.get("current_actor")
 
     # Validate the guess by checking if the actor is in the movie’s cast
     cast_response = requests.get(
@@ -255,10 +291,10 @@ def guess():
     if any(actor["name"] == current_actor for actor in cast_data):
         # Add movie to the session database
         db.execute("INSERT INTO movies (title, movie_id, session_id) VALUES (?, ?, ?)", selected_movie, movie_id, session_id)
+        session['round_attempts'] = 0  # Reset the round counter
 
         # Find the list of already picked actors in the temp actors table
         used_actors = {actor["name"] for actor in db.execute("SELECT name FROM actors WHERE session_id = ?", session_id)}
-        flash("Correct! Next player's turn.")
 
         # Shuffle the list of top 5 main cast members so to randomise the choice
         top_cast = cast_data[:5]
@@ -290,54 +326,66 @@ def guess():
         return redirect("/main")
 
     else:
-        db.execute("UPDATE players SET lives = lives - 1 WHERE id = ?", session["current_player_id"])
-        flash("Nope, sorry! You lost a life.")
+        print("At the end of guess: ", current_player['id'])
+        return redirect("/loseLife")
+
+@app.route("/loseLife")
+def loseLife():
+    session_id = session.get("session_id")
+
+    current_player = db.execute("SELECT id, name, lives FROM players WHERE id = ?", session["current_player_id"])[0]
+
+    print("At the start of loseLife: ", current_player['id'])
+    # Avoid multiple life deductions in quick succession
+    if session.get("life_deducted", False):
         return redirect("/main")
 
+    # Debugging: Log the current player and their lives
+    print(f"Before deduction: {current_player['name']} has {current_player['lives']} lives.")
+
+    db.execute("UPDATE players SET lives = lives - 1 WHERE id = ?", session["current_player_id"])
+    session['life_deducted'] = True  # Mark that a life has been deducted
+
+    # Debugging: Log after deduction
+    updated_player = db.execute("SELECT id, name, lives FROM players WHERE id = ?", session["current_player_id"])[0]
+    print(f"After deduction: {updated_player['name']} has {updated_player['lives']} lives.")
+
+    # Deduct correct guesses in single-player mode
+    if session["num_players"] == 1:
+        session["correct_guesses"] = max(0, session.get("correct_guesses", 0) - 1)
+
+    return redirect("/main")
+
 @app.route("/endSolo")
-def end_session_solo():
+def endSolo():
     session_id = session.get("session_id")
 
     players = db.execute("SELECT id, name, lives FROM players WHERE session_id = ?", session_id)
     if not players:
         flash("No players found!")
         return redirect("/start")  # Redirect if no players found
-
-    if session["num_players"] == 1 and players[0]["lives"] != 0:
-        return redirect("/start")
 
     if session["num_players"] != 1:
         return redirect("/start")
 
-    return render_template("endSolo.html")
+    # Calculate score and configuration
+    correct_guesses = session.get("correct_guesses", 0)
+    initial_timer = session.get("timer", 0)
+
+    # Render end screen with score and configuration details
+    return render_template(
+        "endSolo.html",
+        correct_guesses=correct_guesses,
+        initial_timer=initial_timer
+    )
 
 @app.route("/gameover")
-def end_session_gameover():
+def gameover():
     session_id = session.get("session_id")
+    winner = request.args.get("winner")  # Pass winner name as a query parameter if needed
 
-    players = db.execute("SELECT id, name, lives FROM players WHERE session_id = ?", session_id)
-    if not players:
-        flash("No players found!")
-        return redirect("/start")  # Redirect if no players found
-
-    if session["num_players"] == 1:
-        return redirect("/start")
-
-    if session["num_players"] > 1:
-        alive_players = [player for player in players if player["lives"] > 0]
-        print(alive_players)
-        print(len(alive_players))
-        if len(alive_players) > 1:
-            return redirect("/start")
-
-    return render_template("gameover.html", active_players=alive_players)
-
-@app.route("/end_turn", methods=["POST"])
-def end_turn():
-    session_id = session.get("session_id")
-    player_id = session.get("current_player_id")
-    db.execute("UPDATE players SET lives = lives - 1 WHERE id = ?", player_id)
-    flash("Time over! You lost a life.")
-    return "", 200
+    if winner:
+        return render_template("gameover.html", message=f"{winner} is the winner!")
+    return render_template("gameover.html", message="All players are out of lives! No winner.")
 
 

@@ -1,9 +1,15 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Guess the movie - About
+    Solo Game Over
 {% endblock %}
 
 {% block main %}
-With {session.get('timer')} seconds, you guessed {guesses} movies correctly!")
+<div class="text-center">
+    <h1>Game Over!</h1>
+    <p>You guessed <strong>{{ correct_guesses }}</strong> movies correctly!</p>
+    <p>You played with a configuration of <strong>{{ initial_timer }} seconds</strong>.</p>
+    <p>Think you can beat your score next time?</p>
+    <a href="/start" class="btn btn-primary">Play Again</a>
+</div>
 {% endblock %}
