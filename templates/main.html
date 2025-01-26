@@ -13,27 +13,6 @@
 <!-- Main content area -->
 <div class="main-content">
 
-    <!-- Flash messages and 3,2,1 countdown
-    <div id="countdown" style="display: none;">3...</div>
-    <script>
-        const flashMessage = document.getElementById("flash-message");
-        const countdown = document.getElementById("countdown");
-        if (flashMessage) {
-            setTimeout(() => {
-                flashMessage.style.display = "none";
-                countdown.style.display = "block";
-                let count = 3;
-                const interval = setInterval(() => {
-                    countdown.textContent = `${count--}...`;
-                    if (count < 0) {
-                        clearInterval(interval);
-                        countdown.style.display = "none";
-                    }
-                }, 1000);
-            }, 2000);
-        }
-    </script>   -->
-
     <!-- Left content section (2 blocks stacked vertically) -->
     <div class="left-section">
         <!-- Player Info block (top left) -->
@@ -62,13 +41,13 @@
 
     <!-- Right content section (sidebar with player stats, lives, timer, etc.) -->
     <div class="right-section">
-        <h3>Players and Stats</h3>
+        <h3>Players</h3>
         <ul>
             {% for player in players %}
                 <li>{{ player.name }}: {{ player.lives }} lives</li>
             {% endfor %}
         </ul>
-        <div class="timer">
+        <div class="timer" style="display: flex; align-items: center; justify-content: center">
             <p>Time left: <span id="timer" data-timer="{{ timer }}">{{ timer }}s</span></p>
         </div>
     </div>

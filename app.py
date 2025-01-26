@@ -20,26 +20,14 @@ db = SQL("sqlite:///game_database.db")
 # Helper functions
 def reset_active_players(session_id):
     players = db.execute("SELECT id, name, lives, active FROM players WHERE session_id = ?", session_id)
-    db.commit()  # Ensure the update is committed
     new_active_players = [player for player in players if player["active"] != 0]
     session['round_active'] = len(new_active_players)
     return new_active_players
 
 def get_active_players(session_id):
     players = db.execute("SELECT id, name, lives, active FROM players WHERE session_id = ?", session_id)
-    db.commit()  # Ensure the update is committed
-    return [player for player in players]
-
-'''
-def update_active_players_during_session(session_id):
-    active_players = get_active_players_during_session(session_id)
-    session['active_players'] = active_players
-
-def update_active_players(session_id):
-    active_players = get_active_players(session_id)
-    session['active_players'] = active_players
-    session['round_active'] = len(active_players)
-'''
+    active_players = [player for player in players if player["active"] != 0]
+    return active_players
 
 def get_random_actor():
     # Retrieve session_id
@@ -54,7 +42,6 @@ def get_random_actor():
 
     # Add actor to the temporary database
     db.execute("INSERT INTO actors (name, actor_id, session_id) VALUES (?, ?, ?)", selected_actor["name"], selected_actor["id"], session_id)
-    db.commit()  # Ensure the update is committed
 
     return selected_actor["name"]
 
@@ -82,7 +69,6 @@ def start():
         db.execute("DELETE FROM movies WHERE session_id = ?", session_id)
         db.execute("DELETE FROM players WHERE session_id = ?", session_id)
         db.execute("DELETE FROM sessions WHERE session_id = ?", session_id)
-        db.commit()  # Ensure the update is committed
 
         session.clear()
 
@@ -136,17 +122,14 @@ def start():
 
         # Metadata in database
         db.execute("INSERT INTO sessions (session_id, num_players, timer) VALUES (?, ?, ?)", session_id, num_players, timer)
-        db.commit()  # Ensure the update is committed
 
         # Insert players into database
         for name in player_names:
             db.execute("INSERT INTO players (session_id, name, lives, active) VALUES (?, ?, ?, ?)", session_id, name, 3, 1)
-            db.commit()  # Ensure the update is committed
 
         # Initialise session['active_players']
         session['active_players'] = get_active_players(session_id)
         session['round_active'] = num_players
-        print("BEFORE ANYTHING: ", session['active_players'])
 
         # Reset session database
         session.pop('current_actor', None)
@@ -166,7 +149,6 @@ def main():
 
     # Players for front-end visualisation
     players = db.execute("SELECT id, name, lives FROM players WHERE session_id = ?", session_id)
-    db.commit()  # Ensure the update is committed
     if not players:
         flash("No players found!")
         return redirect("/start")  # Redirect if no players found
@@ -181,8 +163,6 @@ def main():
     else:
         current_player = active_players[session['current_player_index']] # retrieve the right player
     session['current_player_id'] = current_player['id']                  # store their id in session - now we know that specific "c_p_id" is playing
-
-    print("AT THE START OF MAIN: ", active_players, "Currnet Player Index: ", session['current_player_index'], "Current player ID: ", session['current_player_id'])
 
     # Get a random actor if none has been set
     current_actor = session.get('current_actor') or get_random_actor()
@@ -276,7 +256,6 @@ def guess():
     if any(actor['name'] == current_actor for actor in cast_data):
         # Add movie to the session database
         db.execute("INSERT INTO movies (title, movie_id, session_id) VALUES (?, ?, ?)", selected_movie, movie_id, session_id)
-        db.commit()  # Ensure the update is committed
         session['actor_attempts'] = 0  # Reset the round counter
 
         # Find the list of already picked actors in the temp actors table
@@ -306,7 +285,6 @@ def guess():
 
         # Add the new actor to the temporary actors table in the database
         db.execute("INSERT INTO actors (name, actor_id, session_id) VALUES (?, ?, ?)", new_actor, actor['id'], session_id)
-        db.commit()  # Ensure the update is committed
 
         # Update the session with the new actor
         session['current_actor'] = new_actor
@@ -327,10 +305,8 @@ def loseLife():
         return redirect("/main")
 
     db.execute("UPDATE players SET lives = lives - 1 WHERE session_id = ? AND id = ?", session_id, session['current_player_id'])
-    db.commit()  # Ensure the update is committed
 
     session['life_deducted'] = True  # Mark that a life has been deducted
-    print("IN LOSELIFE: session['active_players']", session['active_players'], "Current Player Index: ", session['current_player_index'], "Current player ID: ", session['current_player_id'])
 
     return redirect("/endOfTurn")
 
@@ -338,19 +314,9 @@ def loseLife():
 def endOfTurn():
     session_id = session.get('session_id')
 
-    '''
-    current_player = db.execute("SELECT id, name, lives, active FROM players WHERE session_id = ? AND id = ?", session_id, session['current_player_id"])
-    print(current_player)
-    current_player_index = session.get("current_player_index", 0)
-    print(current_player_index)
-    active_players = get_active_players_during_session(session_id)
-    print(active_players)
-    '''
-
+    session['active_players'] = get_active_players(session_id)
     active_players = session.get('active_players')
-    current_player = active_players[session['current_player_index']]
-    print("AT THE START OF ENOFTURN: ", active_players, "Currnet Player Index: ", session['current_player_index'], "Current player ID: ", session['current_player_id'])
-
+    current_player = active_players[session['current_player_index']] # I don't think we need this later
 
     # Check if all players guessed wrong for the current actor
     if session['actor_attempts'] >= len(active_players):
@@ -362,7 +328,6 @@ def endOfTurn():
     if session['num_players'] == 1:
         if session['wrong_answer'] == False:
             session['correct_guesses'] = max(0, session.get('correct_guesses', 0) + 1)
-            print("CORRECT? ", session['correct_guesses'])
         session['wrong_answer'] = False # Reset for single player score
 
         if active_players[0]['lives'] <= 0:  # Player has no lives left (maybe I need to change this to zero lives for player)
@@ -373,6 +338,10 @@ def endOfTurn():
     # Handle multiplayer game ending
     if session['num_players'] > 1:
         if session['round_active'] == 0:
+            db.execute("UPDATE players SET active = 0 WHERE session_id = ? AND lives = ?", session_id, 0)
+            session['active_players'] = reset_active_players(session_id)    # reset active_players
+            active_players = session.get('active_players')                  # reset active_players
+
             # Check game-ending conditions after a full round
             if len(active_players) == 1:
                 winner = active_players[0]['name']
@@ -382,18 +351,12 @@ def endOfTurn():
                 return redirect("/gameover")  # No winner case
 
             elif len(active_players) > 1:
-                active_players = reset_active_players(session_id)     # reset active_players
                 session['current_player_index'] = 0
                 session['round_active'] = len(active_players)
-                print("reset session number is ", session['round_active'])
-                print("END OF TURN AT THE START OF NEW CYCLE: ", active_players, "Currnet Player Index: ", session['current_player_index'], "Current player ID: ", session['current_player_id'])
-
 
         else:
             current_player_index = session.get('current_player_index')
             session['current_player_index'] = (current_player_index + 1) % len(active_players)   # advance player by 1
-            print("END OF TURN DURING CYCLE: ", active_players, "Currnet Player Index: ", session['current_player_index'], "Current player ID: ", session['current_player_id'])
-
 
     return redirect("/main")
 

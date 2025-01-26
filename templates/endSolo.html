@@ -5,11 +5,14 @@
 {% endblock %}
 
 {% block main %}
-<div class="text-center">
+<div class="text-center" style="color: white; margin: 15px">
     <h1>Game Over!</h1>
-    <p>You guessed <strong>{{ correct_guesses }}</strong> movies correctly!</p>
-    <p>You played with a configuration of <strong>{{ initial_timer }} seconds</strong>.</p>
-    <p>Think you can beat your score next time?</p>
+    <h3>You guessed <strong>{{ correct_guesses }}</strong> movies correctly!</h3>
+    <h3>You played with a configuration of <strong>{{ initial_timer }} seconds</strong>.</h3>
+    <h3>Think you can beat your score next time?</h3>
+</div>
+<br/>
+<div class="text-center">
     <a href="/start" class="btn btn-primary">Play Again</a>
 </div>
 {% endblock %}

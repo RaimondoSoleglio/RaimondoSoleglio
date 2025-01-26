@@ -30,10 +30,17 @@ document.addEventListener("DOMContentLoaded", () => {
     // Fetch suggestions via AJAX
     function fetchResults() {
         const query = inputField.value.trim();
-        if (!query) {
+        /* if (!query) {
             suggestionBox.innerHTML = ""; // Clear suggestions if input is empty
             return;
-        }
+        } */
+
+        if (query) {
+            suggestionBox.style.display = 'block';
+            // Populate resultsList with results
+            } else {
+            suggestionBox.style.display = 'none';
+            }
 
         fetch(`/query?q=${encodeURIComponent(query)}`)
             .then((response) => response.json())
