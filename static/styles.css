@@ -123,13 +123,13 @@ option, #player-names-section input#player_name,
     font-size: 20px;
 }
 
-/* to review */
 .main-content {
     display: grid;
     grid-template-columns: 4fr 1fr; /* 2 columns: left (3), right (1) */
     grid-template-rows: auto; /* The rows are flexible */
     gap: 2rem; /* Space between columns */
     padding: 2rem;
+    height: fit-content;
 }
 
 .left-section {
@@ -165,6 +165,7 @@ option, #player-names-section input#player_name,
     padding: 1rem;
     border-radius: 8px;
     text-align: center;
+    height: auto;
 }
 
 h3 {
@@ -286,4 +287,20 @@ ul li {
 
 .timer {
     background-color: #87eaba;
+}
+
+
+@media (max-width: 768px) {
+    .main-content {
+        grid-template-columns: 1fr; /* Stack sections vertically */
+        grid-template-rows: auto auto; /* Define rows */
+    }
+
+    .right-section {
+        order: -1; /* Move the right section (players and timer) above the left section */
+    }
+
+    .left-section {
+        order: 1; /* Move the left section (gameplay) below */
+    }
 }
