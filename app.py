@@ -96,10 +96,7 @@ def start():
 
         # Validate each player's name
         for name in player_names:
-            if not name.isalnum() or len(name) > 10:
-                flash("Player names must be alphanumeric and up to 10 characters long.")
-            if player_names.count(name) > 1:
-                flash("Player names must be unique.")
+            if not name.isalnum() or len(name) > 10 or player_names.count(name) > 1:
                 return redirect("/start")
 
         # Get timer value

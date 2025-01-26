@@ -55,6 +55,13 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+
+        // Check if the name is unique
+        if (playerNames.includes(playerName)) {
+            alert("This name is already taken. Please choose a unique name.");
+            return;
+        }
+
         playerNames.push(playerName);
 
         const listItem = document.createElement('li');
