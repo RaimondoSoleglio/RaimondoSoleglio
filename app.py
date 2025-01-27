@@ -3,6 +3,11 @@ from flask import Flask, flash, redirect, render_template, request, session, jso
 from flask_session import Session
 import requests, random, json, uuid
 
+# Thank you Enrico Cascavilla for our useful conversations.
+# Thank you David Malan for an amazing course.
+# Thank you Marianna for all your patience.
+# And thanks to friends for testing.
+
 # Configure application
 app = Flask(__name__)
 
