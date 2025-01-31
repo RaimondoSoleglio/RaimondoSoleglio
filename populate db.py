@@ -35,7 +35,7 @@ first_actor = [
     (123, "Robert De Niro"),
     (552, "Anne Hathaway"),
     (1305, "Michelle Williams"),
-    (2762, "Renee Zellweger"),
+    (2762, "Renée Zellweger"),
     (133, "Benedict Cumberbatch"),
     (4958, "Matthew McConaughey"),
     (350, "Jude Law"),
