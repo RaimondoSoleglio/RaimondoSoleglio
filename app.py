@@ -12,7 +12,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # My TMDb API key
-TMDB_API_KEY = "b0ae1057e51208e1713059117208de90"
+TMDB_API_KEY = "080e52c8e39fb153661df7f334beef95"
 
 # Temporary in-memory database
 db = SQL("sqlite:///game_database.db")
