@@ -113,6 +113,23 @@ Days later, I finally decide to test the API approach and, at the same time, I a
 >
 >Plus: I was wondering if I could use an API instead of building my own database and use that to dynamically show the title "as the user is typing them", mimicking what David did in one of the CS50 lessons. And it seems that through TMDB API this is quite easy to implement.
 
-Once I changed my approach, I have started to finally move on and build properly my app, thinking of details like "How the app should pick an actor?", "How the selection in the query should work? Could a user use both the mouse or just the keyboard? Would be useful to autoselect the search bar for keyboard-only users?".
+Once I changed my approach, I have started to finally move on and build properly my app, thinking of details like "How the app should pick an actor?", "How the selection in the query should work? Could a user use both the mouse or just the keyboard? Would be useful to autoselect the search bar for keyboard-only users?". Also, by analysing David's code for the Finance pset, I started to explore better the choices related to security.
+
+> Things I managed to do:
+>
+>   - Adding randomness to pick from the first 5 actors in a cast
+>   - Moving to the number 6 on in a cast if all the main 5 actors have been picked
+>   - Adding original title to the movie when it's not the same as english (Nikita)
+>   - Movie does not appear in the query if it's already been previously chosen
+>   - You can select movies with arrows
+>
+> Learnt more about session[]
+>
+>REMEMBER THIS:
+>
+> Security Considerations:
+>
+>    - Before: With signed cookies, the session data is stored on the client side and only the cookie is sent to the server. The session data is encrypted and signed with your SECRET_KEY, so it cannot be tampered with by the user.
+>    - After: When using the filesystem, the session data is stored on the server, which is more secure because it is not visible to the client. However, you must ensure the server's filesystem is secure to prevent unauthorized access to session data. Flask will automatically generate session files in a directory (usually /tmp by default) on the server. Make sure that directory has the correct permissions and isn't publicly accessible.
 
 
