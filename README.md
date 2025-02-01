@@ -3,11 +3,12 @@
 #### Description: A guessing game about actors and movies, playable both as a single- or multiplayer.
 <br/>
 
-[General initial approach](#general-initial-approach)
-[The game dynamics](#the-game-dynamics)
-[Purpose of each file](#purpose-of-each-file)
-[Potential improvements](#potential-improvements-and-additional-functionalities)
-[Thoughts about the game, difficulties, solutions](#thoughts-about-the-game-difficulties-solutions)
+### INDEX
+[General initial approach](#general-initial-approach) <br/>
+[The game dynamics](#the-game-dynamics) <br/>
+[Purpose of each file](#purpose-of-each-file) <br/>
+[Potential improvements](#potential-improvements-and-additional-functionalities) <br/>
+[Thoughts about the game, difficulties, solutions](#thoughts-about-the-game-difficulties-solutions) <br/>
 
 ## General initial approach
 
