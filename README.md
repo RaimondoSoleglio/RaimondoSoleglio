@@ -1,6 +1,7 @@
 # GUESS THE MOVIE
 #### Video Demo:  <URL HERE>
 #### Description: A guessing game about actors and movies, playable both as a single- or multiplayer.
+<br/>
 
 ## General initial approach
 
@@ -10,6 +11,8 @@ Occasionally I have asked also the duck debugger directly inside VS Code.
 The initial plan was much bigger and complex than what it turned out to be - I will talk about this in the section about [Potential improvements](#potential-improvements-and-additional-funcionalities)
 
 The starting point is the whole Finance project from CS50 course. I didn't need any of the code relative to logging in, but I used most of the structure of the Flask app and Templates and I have built upon it.
+<br/>
+<br/>
 
 ## The game dynamics
 
@@ -57,8 +60,15 @@ It contains the following tables:
 JS files:
 [scriptMain.js](/static/scriptMain.js) handles the dynamic query and selection of the movies
 [scriptTimer.js](/static/scriptTitmer.js) handles the time a player has to give an answer; it starts only after the end of a countdown warning the player that is their turn
-[scriptStart.js](/static/scriptStart.js)
+[scriptStart.js](/static/scriptStart.js) takes care that all the data on the start page are inputted properly
 
+[stiles.css](/static/styles.css) contains all the CSS
+
+Templates:
+In addition to the templates described above, there is a [layout.html](/templates/layout.html) that lays the structure for all the Jinja templates.
+<br/>
+<br/>
+<br/>
 
 ## Thoughts about the game, difficulties, solutions
 
