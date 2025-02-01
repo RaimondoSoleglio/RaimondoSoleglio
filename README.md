@@ -3,6 +3,12 @@
 #### Description: A guessing game about actors and movies, playable both as a single- or multiplayer.
 <br/>
 
+[General initial approach](#general-initial-approach)
+[The game dynamics](#the-game-dynamics)
+[Purpose of each file](#purpose-of-each-file)
+[Potential improvements](#potential-improvements-and-additional-functionalities)
+[Thoughts about the game, difficulties, solutions](#thoughts-about-the-game-difficulties-solutions)
+
 ## General initial approach
 
 Given that I have decided to build the app by myself, I have sought the help of an AI to build, improve and fix the app in the process. The only AI used was ChatGPT, of which I took advantage to explore the new Canvas functionality that had just been implemented when I started my project.
