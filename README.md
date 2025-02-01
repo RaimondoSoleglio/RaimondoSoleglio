@@ -107,3 +107,9 @@ While all this was very interesting and nice to explore, it slowed down my proje
 > I have signed up for a free account on Oracle Cloud to host my database.
 Now the big problem is: I can't use CS50 library to connect to it and probably I need to learn a whole new world of stuff to make this work OUCH!
 
+Days later, I finally decide to test the API approach and, at the same time, I am looking for a place that it can then host my app. That's when I decide to go for Render. Render, like many other similar services, in its free tier, does not offer constant servicing and the app sins down after inactivity - which means sometimes it takes a couple of minutes to restart when someone goes there. I am still very happy with my first test of my own app online, and the link to take a look at it directly on the web is [here](https://raimondosoleglio.onrender.com)
+
+>After deciding to simplify the project to its basics, I have also attempted to find the right place where I could host the Flask app (and for the moment I have found that Render could be a good place)
+>
+>Plus: I was wondering if I could use an API instead of building my own database and use that to dynamically show the title "as the user is typing them", mimicking what David did in one of the CS50 lessons. And it seems that through TMDB API this is quite easy to implement.
+
