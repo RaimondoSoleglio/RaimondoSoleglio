@@ -26,7 +26,7 @@ In a multiplayer mode, within a whole round each player has only one guess: once
 
 The multiplayer mode can end both with a winner or with no winners. In fact, in order for a player to win, a whole round has to be completed. For example, if at a final round out of 3 players the first 2 have lost all their lives and Player 3 has still one left, Player 3 still will have to answer correctly in order to win: if all players have 0 lives at the end of the round, there are no winners.
 
-In single-player mode, there is a counter. At the end of the game, the app will tell you how many guesses were correct and the timer difficulty you have picked for this session.
+In single-player mode, there is a counter. At the end of the game, the app will tell you how many guesses were correct and the timer difficulty you chose for that session.
 
 ## Purpose of each file
 
