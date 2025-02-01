@@ -27,7 +27,9 @@ In single-player mode, there is a counter. At the end of the game, the app will 
 
 ## Purpose of each file
 
-In app.py there are all the routes and functionalities of the game.
+[app.py](app.py) is the main file with the Flask app.
+
+In [populate db](populate/ db.py)
 
 
 
