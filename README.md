@@ -70,9 +70,36 @@ In addition to the templates described above, there is a [layout.html](/template
 <br/>
 <br/>
 
+## Potential improvements and additional funcionalities
+
+The initial idea for the game was much more extensive - and thinking so big from the start was of course a typical rookie mistake. But now that a foundation is laid, those functionalities I had in mind in the first place could be nice additions.
+
+It could be nice for example to introduce the following:
+
+1. Instead of just guessing actors from movies, the game could be structured as a chain. For example: App picks actor 1 -> Player 1 picks movie 1 with actor 1 -> Player 2 picks actor 2 from movie 1 -> Plaeyr 3 picks movie 2 with actor 2 and so on... The players could decide which style of game they want to play.
+
+2. There could be an option at start that allows you to insert more categories to guess. For example in the chain explained in 1. we could add directors and the app could randomly ask the players for either one category or another to guess.
+
+3. At the very begininning I had imagined the game completely customisable. For example, for added difficulty or vice-versa to make it easier in some cases, players could pick just a range of years in which the movies have been produced, or just a geographical area, or spoken in a certain language.
+
+4. It would be nice to add more design elements to the front-end. Maybe pictures associated with actors? Or at least the option to do so? Hearts emojis to show the number of lives? There was for example a red flash appearing for the wrong answer at some point, but I got it lost in the hundreds of changes I have made to the code.
+
+5. Sounds would possibly also add to enjoyment of the game.
+
+
 ## Thoughts about the game, difficulties, solutions
 
+I will keep this section short, but I took some notes in a diary as I was encountering difficulties and changing the direction of my work to adapt. This has been very useful to understand how it's better to build up from the small to the big, instead of imagining already the final product in mind the whole time. I hope this can help me or others to be aware of this sort of traps.
 
+Some of the notes.
 
-## Potential improvements and additional funcionalities
-Here
+> I managed to reduce the whole database to 1.67gB
+Still quite big, I hope it can still work.
+But definitely more manageable than the 7 gb one I had at start.
+>I created a joint table where the regions are limited to US, GB, FR, IT, ES
+Where the movies are NOT shorts
+And the year of release is at least 1931.
+
+Here I was basicaly attempting to build my own specific database, instead of using an API!!! This was not only an incredibly silly approach, but it also brought me into unexpected places that wasted a lot of my time. For example I started to test and study Oracle cloud and many other things related to databases and database hosting.
+
+While all this was very interesting and nice to explore, it slowed down my project, which was the ultimate thing I should have focused on, and it overwhelmed me to the point I had to rethink the whole approach. 
