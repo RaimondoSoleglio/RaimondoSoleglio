@@ -43,7 +43,7 @@ The routes:
 * __query__ Handles the query for a movie in the search bar on the main.
 * __guess__ Invoked by POST once a player picks an answer, redirects to _endOfTurn_ if the answer is correct, to _loseLife_ if the answer is wrong
 * __loseLife__ It deducts a life and redirects to _endOfTurn_
-* __endOfTurn__ It determines how the game proceeds at the end of a turn. It redirects to main if the game continues, and to _endSolo_ (for single-player mode) or _gameover_ if the game ends
+* __endOfTurn__ It determines how the game proceeds at the end of a turn. It redirects to _main_ if the game continues, and to _endSolo_ (for single-player mode) or _gameover_ if the game ends
 * __endSolo__ It handles the scenario of a single-player ending and renders [endSolo.html](/templates/endsolo.html)
 * __gameover__ It handles the scenarios of multiplayer endings (no winner or winner) and renders [gameover.html](/templates/gameover.html)
 
