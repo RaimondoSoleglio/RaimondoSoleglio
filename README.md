@@ -34,9 +34,15 @@ After importing the necessary classes and modules and configuring application an
 A series of helpers functions follows. Two of them are meant to control that a round stays consistent at every steps by tracking properly the active players. One is meant to take care of picking a random actor.
 
 The routes:
-* __home__ It renders the [index.html](index.html) template
-* __start__ When called by GET, it renders the [start.html](start.html) template. By POST, collects all the data to start the game and redirects to [main.html](main.html)
-* __main__ It's where the main game unfolds. Redicrects to 
+* __home__ It renders the [index.html](/templates/index.html) template
+* __start__ When called by GET, it renders the [start.html](/templates/start.html) template. By POST, collects all the data to start the game and redirects to [main.html](/templates/main.html)
+* __main__ It's where the main game unfolds.
+* __query__ Handles the query for a movie in the search bar on the main.
+* __guess__ Invoked by POST once a player picks an answer, redirects to endOfTurn if the answer is correct, to loseLife if the answer is wrong
+* __loseLife__ It deducts a life and redirects to endOfTurn
+* __endOfTurn__ It determines how the game proceeds at the end of a turn. It redirects to main if the game continues, and to endSolo (for single-player mode) or gameover if the game ends
+* __endSolo__ It handles the scenario of single-player ending and renders [endSolo.html](/templates/endsolo.html)
+* __gameover__ It handles the scenarios of multiplayer endings (no winner or winner) and renders [gameover.html](/templates/gameover.html)
 
 In [populate db](populate%20db.py) is a pre-populated list of famous actors and their IDs on TMDb. The usefulness of having a separate file for this is that the list can be modified or enhanced easily at any time.
 
