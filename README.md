@@ -124,7 +124,7 @@ Days later, I finally decided to test the API approach and, at the same time, I 
 >
 >Plus: I was wondering if I could use an API instead of building my own database and use that to dynamically show the title "as the user is typing them", mimicking what David did in one of the CS50 lessons. And it seems that through TMDB API this is quite easy to implement.
 
-Once I changed my approach, I have started to finally move on and build properly my app, thinking of details like "How the app should pick an actor?", "How the selection in the query should work? Could a user use both the mouse or just the keyboard? Would be useful to autoselect the search bar for keyboard-only users?". Also, by analysing David's code for the Finance pset, I started to explore better the choices related to security.
+Once I changed my approach, I have started to finally move on and build properly my app, thinking of details like "How the app should pick an actor?", "How the selection in the query should work? Could a user use both the mouse and the keyboard? Would it be useful to autoselect the search bar for keyboard-only users?". Also, by analysing David's code for the Finance pset, I started to explore better the choices related to security.
 
 > Things I managed to do:
 >
