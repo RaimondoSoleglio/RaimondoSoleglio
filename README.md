@@ -28,7 +28,7 @@ In single-player mode, there is a counter. At the end of the game, the app will 
 ## Purpose of each file
 
 [app.py](app.py) is the main file with the Flask app.
-
+After importing the necessary 
 
 In [populate db](populate%20db.py) is a pre-populated list of famous actors and their IDs on TMDb. The usefulness of having a separate file for this is that the list can be modified or enhanced easily at any time.
 
