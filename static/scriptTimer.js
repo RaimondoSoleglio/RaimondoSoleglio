@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
         isPaused = false; // Reset the pause state
 
         interval = setInterval(() => {
+            timerCounter--;
             if (timerCounter <= 0) {
                 clearInterval(interval);
                 timerElement.innerText = "0s"; // Ensure it displays "0s" before any processing
@@ -24,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 }, 100);
             }
 
-            timerCounter--;
             timerElement.innerText = `${timerCounter}s`;
         }, 1000);
     }
