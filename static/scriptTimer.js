@@ -17,11 +17,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         interval = setInterval(() => {
             if (timerCounter <= 0) {
-                timerElement.innerText = "0s"; // Ensure it displays "0s" before any processing
                 clearInterval(interval);
+                timerElement.innerText = "0s"; // Ensure it displays "0s" before any processing
                 setTimeout(() => { // Small delay to ensure UI updates before redirect
                     window.location.href = '/loseLife';
-                }, 100); 
+                }, 100);
             }
 
             timerCounter--;
