@@ -102,4 +102,8 @@ And the year of release is at least 1931.
 
 Here I was basicaly attempting to build my own specific database, instead of using an API!!! This was not only an incredibly silly approach, but it also brought me into unexpected places that wasted a lot of my time. For example I started to test and study Oracle cloud and many other things related to databases and database hosting.
 
-While all this was very interesting and nice to explore, it slowed down my project, which was the ultimate thing I should have focused on, and it overwhelmed me to the point I had to rethink the whole approach. My frustration was quite clear in another later note. 😅 :sweat_smile:
+While all this was very interesting and nice to explore, it slowed down my project, which was the ultimate thing I should have focused on, and it overwhelmed me to the point I had to rethink the whole approach. My frustration was quite clear in another later note. 😅
+
+> I have signed up for a free account on Oracle Cloud to host my database.
+Now the big problem is: I can't use CS50 library to connect to it and probably I need to learn a whole new world of stuff to make this work OUCH!
+
