@@ -21,10 +21,15 @@ The game starts with a randomly picked actor (from a pre-populated list of famou
 
 In a multiplayer mode, within a whole round each player has only one guess: once a player has tried to guess (either right or wrong) then they pass the keyboard to the next player. Each player has 3 lives, if they lose them they are out of the game. The first player is slightly in advantage, because the game always starts (or restarts after a whole round of wrong guesses) with a famous actor.
 
-The multiplayer mode can end both with a winner or with no winners. In fact, in order for a player to win, a whole round has to be completed. For example, if at a final round out of 3 players the first 2 have lost all their lives and Player 3 has still one left, Player 3 still will have to answer correctly in order to win:
+The multiplayer mode can end both with a winner or with no winners. In fact, in order for a player to win, a whole round has to be completed. For example, if at a final round out of 3 players the first 2 have lost all their lives and Player 3 has still one left, Player 3 still will have to answer correctly in order to win: if all players have 0 lives at the end of the round, there are no winners.
 
+In single-player mode, there is a counter. At the end of the game, the app will tell you how many guesses were correct and the timer difficulty you have picked for this session.
 
 ## Purpose of each file
+
+In app.py there are all the routes and functionalities of the game.
+
+
 
 ## Thoughts about the game, difficulties, solutions
 
