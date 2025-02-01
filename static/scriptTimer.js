@@ -19,7 +19,9 @@ document.addEventListener("DOMContentLoaded", () => {
             if (timerCounter <= 0) {
                 timerElement.innerText = "0s"; // Ensure it displays "0s" before any processing
                 clearInterval(interval);
-                window.location.href = '/loseLife';
+                setTimeout(() => { // Small delay to ensure UI updates before redirect
+                    window.location.href = '/loseLife';
+                }, 100); 
             }
 
             timerCounter--;
