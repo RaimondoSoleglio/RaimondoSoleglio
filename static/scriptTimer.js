@@ -24,9 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     window.location.href = '/loseLife';
                 }, 100);
             }
-
+        } else {
             timerElement.innerText = `${timerCounter}s`;
-        }, 1000);
+        }
+        , 1000);
     }
 
     // Function to pause the timer
