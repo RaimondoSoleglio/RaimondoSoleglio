@@ -39,8 +39,8 @@ The routes:
 * __main__ It's where the main game unfolds.
 * __query__ Handles the query for a movie in the search bar on the main.
 * __guess__ Invoked by POST once a player picks an answer, redirects to endOfTurn if the answer is correct, to loseLife if the answer is wrong
-* __loseLife__ It deducts a life and redirects to endOfTurn
-* __endOfTurn__ It determines how the game proceeds at the end of a turn. It redirects to main if the game continues, and to endSolo (for single-player mode) or gameover if the game ends
+* __loseLife__ It deducts a life and redirects to _endOfTurn_
+* __endOfTurn__ It determines how the game proceeds at the end of a turn. It redirects to main if the game continues, and to _endSolo_ (for single-player mode) or gameover if the game ends
 * __endSolo__ It handles the scenario of single-player ending and renders [endSolo.html](/templates/endsolo.html)
 * __gameover__ It handles the scenarios of multiplayer endings (no winner or winner) and renders [gameover.html](/templates/gameover.html)
 
@@ -55,7 +55,10 @@ It contains the following tables:
 * movies: same as above, but for the movies
 
 JS files:
-[scriptMain.js](/static/scriptMain.js) handles the dynamic query and selection of the movies;
+[scriptMain.js](/static/scriptMain.js) handles the dynamic query and selection of the movies
+[scriptTimer.js](/static/scriptTitmer.js) handles the time a player has to give an answer; it starts only after the end of a countdown warning the player that is their turn
+[scriptStart.js](/static/scriptStart.js)
+
 
 ## Thoughts about the game, difficulties, solutions
 
