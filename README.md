@@ -80,7 +80,7 @@ The initial idea for the game was much more extensive - and thinking so big from
 
 It could be nice for example to introduce the following:
 
-1. Instead of just guessing actors from movies, the game could be structured as a chain. For example: App picks actor 1 -> Player 1 picks movie 1 with actor 1 -> Player 2 picks actor 2 from movie 1 -> Plaeyr 3 picks movie 2 with actor 2 and so on... The players could decide which style of game they want to play.
+1. Instead of just guessing actors from movies, the game could be structured as a chain. For example: App picks actor 1 -> Player 1 picks movie 1 with actor 1 -> Player 2 picks actor 2 from movie 1 -> Player 3 picks movie 2 with actor 2 and so on... The players could decide which style of game they want to play.
 
 2. There could be an option at the start that allows you to insert more categories to guess. For example in the chain explained in 1. we could add directors and the app could randomly ask the players for either one category or another to guess.
 
