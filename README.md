@@ -58,9 +58,13 @@ It contains the following tables:
 * movies: same as above, but for the movies
 
 JS files:
+<br/>
 [scriptMain.js](/static/scriptMain.js) handles the dynamic query and selection of the movies
+<br/>
 [scriptTimer.js](/static/scriptTitmer.js) handles the time a player has to answer; it starts only after the end of a countdown warning the player that is their turn
+<br/>
 [scriptStart.js](/static/scriptStart.js) takes care that all the data on the start page are inputted properly
+<br/>
 
 [stiles.css](/static/styles.css) contains all the CSS
 
