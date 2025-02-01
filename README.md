@@ -28,7 +28,15 @@ In single-player mode, there is a counter. At the end of the game, the app will 
 ## Purpose of each file
 
 [app.py](app.py) is the main file with the Flask app.
-After importing the necessary 
+
+After importing the necessary classes and modules and configuring application and session, an API key and game_database.db are stored in variables.
+
+A series of helpers functions follows. Two of them are meant to control that a round stays consistent at every steps by tracking properly the active players. One is meant to take care of picking a random actor.
+
+The routes:
+* __home__ It renders the [index.html](index.html) template
+* __start__ When called by GET, it renders the [start.html](start.html) template. By POST, collects all the data to start the game and redirects to [main.html](main.html)
+* __main__ It's where the main game unfolds. Redicrects to 
 
 In [populate db](populate%20db.py) is a pre-populated list of famous actors and their IDs on TMDb. The usefulness of having a separate file for this is that the list can be modified or enhanced easily at any time.
 
