@@ -72,5 +72,7 @@ In addition to the templates described above, there is a [layout.html](/template
 
 ## Thoughts about the game, difficulties, solutions
 
+
+
 ## Potential improvements and additional funcionalities
 Here
