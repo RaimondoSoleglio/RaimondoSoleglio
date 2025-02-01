@@ -29,9 +29,15 @@ In single-player mode, there is a counter. At the end of the game, the app will 
 
 [app.py](app.py) is the main file with the Flask app.
 
-In [populate db](populate/ db.py)
+In [populate db](populate%20db.py) is a pre-populated list of famous actors and their IDs on TMDb. The usefulness of having a separate file for this is that the list can be modified or enhanced easily at any time.
 
-
+game_database.db is a sqlite3 database tracking all the data.
+It contains the following tables:
+* starting_actors: fed with the pre-populated list of famous actors
+* sessions: to keep track of multiple sessions of players at the same time; it stores data about the number of players and the timer difficulty;
+* players: for each specific session, stores IDs, names and lives for the players
+* actors: keeps track of the guessed actors to avoid they get picked twice by the the app
+* movies: same as above, but for the movies
 
 ## Thoughts about the game, difficulties, solutions
 
