@@ -118,7 +118,7 @@ While all this was very interesting and nice to explore, it slowed down my proje
 > I have signed up for a free account on Oracle Cloud to host my database.
 Now the big problem is: that I can't use the CS50 library to connect to it and probably I need to learn a whole new world of stuff to make this work OUCH!
 
-Days later, I finally decided to test the API approach and, at the same time, I am looking for a place that can then host my app. That's when I decided to go for Render. Render, like many other similar services, in its free tier, does not offer constant servicing and the app sins down after inactivity - which means sometimes it takes a couple of minutes to restart when someone goes there. I am still very happy with the first test of my app online, and the link to take a look at it directly on the web is [here](https://raimondosoleglio.onrender.com)
+Days later, I finally decided to test the API approach and, at the same time, I am looking for a place that can then host my app. That's when I decided to go for Render. Render, like many other similar services, in its free tier, does not offer constant servicing and the app sinks down after inactivity - which means sometimes it takes a couple of minutes to restart when someone goes there. I am still very happy with the first test of my app online, and the link to take a look at it directly on the web is [here](https://raimondosoleglio.onrender.com)
 
 >After deciding to simplify the project to its basics, I have also attempted to find the right place where I could host the Flask app (and for the moment I have found that Render could be a good place)
 >
