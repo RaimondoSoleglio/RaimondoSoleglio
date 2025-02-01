@@ -40,7 +40,7 @@ It contains the following tables:
 * movies: same as above, but for the movies
 
 JS files:
-[scriptMain.js](/static/scriptMain.js)
+[scriptMain.js](/static/scriptMain.js) handles the dynamic query and selection of the movies; 
 
 ## Thoughts about the game, difficulties, solutions
 
