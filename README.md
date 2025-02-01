@@ -39,6 +39,8 @@ It contains the following tables:
 * actors: keeps track of the guessed actors to avoid they get picked twice by the the app
 * movies: same as above, but for the movies
 
+
+
 ## Thoughts about the game, difficulties, solutions
 
 ## Potential improvements and additional funcionalities
